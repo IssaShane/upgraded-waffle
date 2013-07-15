@@ -36,8 +36,8 @@ void Enemy::getInput()
     if ( key[SDLK_s] )
     {
         Attacking = true;
-        Clip.x = 72;
-        Clip.y = 6;
+        Clip.x = 108;
+        Clip.y = 8;
     }
     else
     {
@@ -52,10 +52,10 @@ void Enemy::checkHealth( SDL_Rect POS, bool IsAttacking )
 
     if ( IsAttacking == true )
     {
-        if ( Pos.x < POS.x + POS.w &&
-            Pos.x + Pos.w > POS.w &&
-            Pos.y < Pos.y + Pos.h &&
-            Pos.y + Pos.h > Pos.y )
+        if ( POS.x < Pos.x + Pos.w &&
+            POS.x + POS.w > Pos.w &&
+            POS.y < Pos.y + Pos.h &&
+            POS.y + POS.h > Pos.y )
         {
             Health -= 1;
         }
