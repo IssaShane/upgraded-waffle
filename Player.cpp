@@ -12,6 +12,8 @@ Player::Player()
     Clip.w = 32;
     Clip.h = 48;
     Health = 100;
+    colorKey = SDL_MapRGB( Img->format, 0xFF, 0, 0xFF );
+    SDL_SetColorKey( Img, SDL_SRCCOLORKEY, colorKey );
 }
 
 void Player::draw( SDL_Surface *Screen )

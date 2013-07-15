@@ -26,6 +26,7 @@ class Player
         Uint8 *key;
         int Health;
         int Direction;
+        Uint32 colorKey;
 };
 
 #endif
