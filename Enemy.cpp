@@ -61,14 +61,16 @@ void Enemy::checkHealth( SDL_Rect POS, bool IsAttacking )
         {
             Health -= 1;
         }
+/*
         if ( Direction == 3 )
-            {
-                Pos.x -= 10;
-            }
-            else if ( Direction == 2 )
-            {
-                Pos.x += 10;
-            }
+        {
+            Pos.x -= 10;
+        }
+        else if ( Direction == 2 )
+        {
+            Pos.x += 10;
+        }
+*/
     }
 }
 
