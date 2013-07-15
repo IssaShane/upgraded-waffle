@@ -24,6 +24,7 @@ class Enemy
         Uint8 *key;
         bool Attacking;
         int Direction;
+        Uint32 colorKey;
 };
 
 #endif

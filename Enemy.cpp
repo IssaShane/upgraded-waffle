@@ -13,6 +13,8 @@ Enemy::Enemy()
     Clip.h = 48;
     Health = 100;
     Attacking = false;
+    colorKey = SDL_MapRGB( Img->format, 0xFF, 0, 0xFF );
+    SDL_SetColorKey( Img, SDL_SRCCOLORKEY, colorKey );
 }
 
 void Enemy::draw( SDL_Surface *Screen )
