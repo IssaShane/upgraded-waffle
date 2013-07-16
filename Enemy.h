@@ -25,6 +25,7 @@ class Enemy
         bool Attacking;
         int Direction;
         Uint32 colorKey;
+        int frame;
 };
 
 #endif

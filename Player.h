@@ -27,6 +27,7 @@ class Player
         int Health;
         int Direction;
         Uint32 colorKey;
+        int frame;
 };
 
 #endif
