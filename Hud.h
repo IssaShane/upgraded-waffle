@@ -20,6 +20,13 @@ class Hud
         //Enemy
         SDL_Surface *EnemyHealthBar;
         SDL_Rect EnemyHealthBarPos;
+
+        //Background Screens
+        SDL_Surface *HowToPlay;
+        SDL_Surface *Player1_Wins;
+        SDL_Surface *Player2_Wins;
+        int bgType;
+        Uint8 *key;
 };
 
 #endif
