@@ -10,7 +10,7 @@ class Hud
         Hud();
         ~Hud();
         void draw( SDL_Surface *Screen );
-        void Update( int PlayerHealth, int EnemyHealth );
+        void Update( int PlayerHealth, int EnemyHealth, int PlayerSpecial );
 
     private:
         //Player
@@ -27,6 +27,10 @@ class Hud
         SDL_Surface *Player2_Wins;
         int bgType;
         Uint8 *key;
+
+        //Player Special
+        SDL_Surface *PlayerSpecialBar;
+        SDL_Rect PlayerSpecialBarPos;
 };
 
 #endif

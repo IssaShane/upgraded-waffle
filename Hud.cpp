@@ -17,12 +17,18 @@ Hud::Hud()
     Player1_Wins = IMG_Load("data/Splash_Screens/Player1_Win.png");
     Player2_Wins = IMG_Load("data/Splash_Screens/Player2_Win.png");
     bgType = 0;
+
+    //Player Special
+    PlayerSpecialBar = IMG_Load("data/SpecialBar.png");
+    PlayerSpecialBarPos.x = 640;
+    PlayerSpecialBarPos.y = 40;
 }
 
-void Hud::Update( int PlayerHealth, int EnemyHealth )
+void Hud::Update( int PlayerHealth, int EnemyHealth, int PlayerSpecial )
 {
     PlayerHealthBarPos.x = 640 - ( PlayerHealth * 3 );
     EnemyHealthBarPos.x = -300 + ( EnemyHealth * 3 );
+    PlayerSpecialBarPos.x = 640 - ( PlayerSpecial * 8 );
 
     key = SDL_GetKeyState(NULL);
     if ( bgType == 1 && key[SDLK_RETURN] )
@@ -37,12 +43,17 @@ void Hud::Update( int PlayerHealth, int EnemyHealth )
     {
         bgType = 2;
     }
+    if ( PlayerSpecialBarPos.x < 598 )
+    {
+        PlayerSpecialBarPos.x = 598;
+    }
 }
 
 void Hud::draw( SDL_Surface *Screen )
 {
     SDL_BlitSurface( PlayerHealthBar, NULL, Screen, &PlayerHealthBarPos );
     SDL_BlitSurface( EnemyHealthBar, NULL, Screen, &EnemyHealthBarPos );
+    SDL_BlitSurface( PlayerSpecialBar, NULL, Screen, &PlayerSpecialBarPos );
     if ( bgType == 1 )
     {
         SDL_BlitSurface( HowToPlay, NULL, Screen, NULL );

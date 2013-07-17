@@ -10,8 +10,8 @@ void Graphics::draw()
 {
     Hero.getInput();
     Hero.checkHealth( Baddy.returnPos(), Baddy.returnAttacking() );
-    Health.Update( Hero.returnHealth(), Baddy.returnHealth() );
-    Baddy.checkHealth( Hero.returnPos(), Hero.returnAttacking() );
+    Health.Update( Hero.returnHealth(), Baddy.returnHealth(), Hero.returnSpecial() );
+    Baddy.checkHealth( Hero.returnPos(), Hero.returnAttacking(), Hero.returnPower() );
     Baddy.getInput();
 
     SDL_BlitSurface( bg, NULL, Screen, NULL );

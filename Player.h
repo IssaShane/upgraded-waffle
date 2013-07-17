@@ -17,6 +17,8 @@ class Player
         int returnHealth();
         SDL_Rect returnPos();
         bool returnAttacking();
+        int returnSpecial();
+        int returnPower();
 
     private:
         SDL_Surface *Img;
@@ -28,6 +30,8 @@ class Player
         int Direction;
         Uint32 colorKey;
         int frame;
+        int Special;
+        int Power;
 };
 
 #endif

@@ -58,28 +58,18 @@ void Enemy::getInput()
     Clip.x = frame * 32;
 }
 
-void Enemy::checkHealth( SDL_Rect POS, bool IsAttacking )
+void Enemy::checkHealth( SDL_Rect POS, bool IsAttacking, int Power )
 {
 
     if ( IsAttacking == true )
     {
-        if ( POS.x < Pos.x + Pos.w &&
-            POS.x + POS.w > Pos.w &&
-            POS.y < Pos.y + Pos.h &&
-            POS.y + POS.h > Pos.y )
+        if ( Pos.x         < POS.x + POS.w &&
+             Pos.x + Pos.w > POS.w         &&
+             Pos.y         < POS.y + POS.h &&
+             Pos.y + Pos.h > POS.y )
         {
-            Health -= 1;
+            Health -= Power;
         }
-/*
-        if ( Direction == 3 )
-        {
-            Pos.x -= 10;
-        }
-        else if ( Direction == 2 )
-        {
-            Pos.x += 10;
-        }
-*/
     }
 }
 

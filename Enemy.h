@@ -11,7 +11,7 @@ class Enemy
         ~Enemy();
         void draw( SDL_Surface *Screen );
         void getInput();
-        void checkHealth( SDL_Rect POS, bool IsAttacking );
+        void checkHealth( SDL_Rect POS, bool IsAttacking, int Power );
         SDL_Rect returnPos();
         int returnHealth();
         bool returnAttacking();

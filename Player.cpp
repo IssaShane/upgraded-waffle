@@ -15,11 +15,17 @@ Player::Player()
     colorKey = SDL_MapRGB( Img->format, 0xFF, 0, 0xFF );
     SDL_SetColorKey( Img, SDL_SRCCOLORKEY, colorKey );
     frame = 0;
+    Special = 0;
+    Power = 1;
 }
 
 void Player::draw( SDL_Surface *Screen )
 {
     SDL_BlitSurface( Img, &Clip, Screen, &Pos );
+    if ( Special >= 5 )
+    {
+        std::cout << "You Have A Special.\n";
+    }
 }
 
 void Player::getInput()
@@ -29,12 +35,28 @@ void Player::getInput()
     {
         Attacking = true;
         frame = 2;
+        Special += 1;
     }
     else
     {
         Attacking = false;
         Clip.x = 0;
     }
+/*
+    if ( key[SDLK_x] && Special >= 5 )
+    {
+        Attacking = true;
+        frame = 2;
+        Power = 1;
+    }
+    else
+    {
+        Attacking = false;
+        Clip.x = 0;
+        Power = 1;
+    }
+*/
+
     if ( key[SDLK_RIGHT] )
     {
         Pos.x += 5;
@@ -62,8 +84,8 @@ void Player::checkHealth( SDL_Rect POS, bool IsAttacking )
     {
         if ( Pos.x < POS.x + POS.w &&
             Pos.x + Pos.w > POS.w &&
-            Pos.y < Pos.y + Pos.h &&
-            Pos.y + Pos.h > Pos.y )
+            Pos.y < POS.y + POS.h &&
+            Pos.y + Pos.h > POS.y )
         {
             Health -= 1;
         }
@@ -83,6 +105,16 @@ SDL_Rect Player::returnPos()
 bool Player::returnAttacking()
 {
     return Attacking;
+}
+
+int Player::returnSpecial()
+{
+    return Special;
+}
+
+int Player::returnPower()
+{
+    return Power;
 }
 
 Player::~Player()
