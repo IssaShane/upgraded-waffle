@@ -12,19 +12,24 @@ class Enemy
         void draw( SDL_Surface *Screen );
         void getInput();
         void checkHealth( SDL_Rect POS, bool IsAttacking, int Power );
+
+        //Return Functions
         SDL_Rect returnPos();
         int returnHealth();
         bool returnAttacking();
 
     private:
+        //Image Properties
         SDL_Surface *Img;
         SDL_Rect Clip;
         SDL_Rect Pos;
-        int Health;
+        Uint32 colorKey;
         Uint8 *key;
+
+        //Stats
+        int Health;
         bool Attacking;
         int Direction;
-        Uint32 colorKey;
         int frame;
 };
 

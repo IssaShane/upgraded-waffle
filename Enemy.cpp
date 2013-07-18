@@ -2,6 +2,7 @@
 
 Enemy::Enemy()
 {
+    //Image Properties
     Img = IMG_Load("data/trev-ftr2.png");
     Pos.x = 64;
     Pos.y = 336;
@@ -11,11 +12,13 @@ Enemy::Enemy()
     Clip.y = 0;
     Clip.w = 32;
     Clip.h = 48;
-    Health = 100;
-    Attacking = false;
     colorKey = SDL_MapRGB( Img->format, 0xFF, 0, 0xFF );
     SDL_SetColorKey( Img, SDL_SRCCOLORKEY, colorKey );
+
+    //Stats
     frame = 0;
+    Health = 100;
+    Attacking = false;
 }
 
 void Enemy::draw( SDL_Surface *Screen )
@@ -26,6 +29,7 @@ void Enemy::draw( SDL_Surface *Screen )
 void Enemy::getInput()
 {
     key = SDL_GetKeyState( NULL );
+    //Movement
     if ( key[SDLK_d] )
     {
         Pos.x += 5;
@@ -40,6 +44,8 @@ void Enemy::getInput()
         Clip.y = 48;
         frame += 1;
     }
+
+    //Attacking
     if ( key[SDLK_s] )
     {
         Attacking = true;
@@ -51,6 +57,8 @@ void Enemy::getInput()
         Attacking = false;
         Clip.x = 0;
     }
+
+    //Updating Frame and Direction
     if ( frame > 1 && Attacking == false )
     {
         frame = 0;

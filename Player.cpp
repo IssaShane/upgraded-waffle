@@ -2,6 +2,7 @@
 
 Player::Player()
 {
+    //Image Properties
     Img = IMG_Load("data/star-sm2.png");
     Pos.x = 512;
     Pos.y = 336;
@@ -11,12 +12,14 @@ Player::Player()
     Clip.y = 0;
     Clip.w = 32;
     Clip.h = 48;
-    Health = 100;
     colorKey = SDL_MapRGB( Img->format, 0xFF, 0, 0xFF );
     SDL_SetColorKey( Img, SDL_SRCCOLORKEY, colorKey );
+
+    //Stats
     frame = 0;
     Special = 0;
     Power = 1;
+    Health = 100;
 }
 
 void Player::draw( SDL_Surface *Screen )

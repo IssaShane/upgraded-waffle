@@ -9,11 +9,14 @@
 class Player
 {
     public:
+        //Action Functions
         Player();
         ~Player();
         void draw( SDL_Surface *Screen );
         void getInput();
         void checkHealth( SDL_Rect POS, bool IsAttacking );
+
+        //Return Functions
         int returnHealth();
         SDL_Rect returnPos();
         bool returnAttacking();
@@ -21,15 +24,18 @@ class Player
         int returnPower();
 
     private:
+        //Image Properties
         SDL_Surface *Img;
         SDL_Rect Clip;
         SDL_Rect Pos;
-        bool Attacking;
-        Uint8 *key;
-        int Health;
-        int Direction;
-        Uint32 colorKey;
         int frame;
+        int Direction;
+        Uint8 *key;
+        Uint32 colorKey;
+
+        //Stats
+        bool Attacking;
+        int Health;
         int Special;
         int Power;
 };
