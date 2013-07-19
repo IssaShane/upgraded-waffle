@@ -22,9 +22,11 @@ Player::Player()
     Health = 100;
 }
 
-void Player::draw( SDL_Surface *Screen )
+void Player::draw( SDL_Surface *Screen, bool IsInMenu )
 {
-    SDL_BlitSurface( Img, &Clip, Screen, &Pos );
+    if ( IsInMenu == false )
+        SDL_BlitSurface( Img, &Clip, Screen, &Pos );
+
     if ( Special >= 5 )
     {
         std::cout << "You Have A Special.\n";
@@ -34,6 +36,7 @@ void Player::draw( SDL_Surface *Screen )
 void Player::getInput()
 {
     key = SDL_GetKeyState(NULL);
+    //Attacking
     if ( key[SDLK_SPACE] )
     {
         Attacking = true;
@@ -45,21 +48,8 @@ void Player::getInput()
         Attacking = false;
         Clip.x = 0;
     }
-/*
-    if ( key[SDLK_x] && Special >= 5 )
-    {
-        Attacking = true;
-        frame = 2;
-        Power = 1;
-    }
-    else
-    {
-        Attacking = false;
-        Clip.x = 0;
-        Power = 1;
-    }
-*/
 
+    //Movement
     if ( key[SDLK_RIGHT] )
     {
         Pos.x += 5;
@@ -74,6 +64,8 @@ void Player::getInput()
         Clip.y = 0;
         frame += 1;
     }
+
+    //Updating frame and direction
     if ( frame > 1 && Attacking == false )
     {
         frame = 0;

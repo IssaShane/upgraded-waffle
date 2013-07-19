@@ -13,10 +13,11 @@ Hud::Hud()
     EnemyHealthBarPos.y = 0;
 
     //Background Screens
-    HowToPlay = IMG_Load("data/Splash_Screens/HowToPlay.png");
+    SelectMap = IMG_Load("data/Menu.png");
     Player1_Wins = IMG_Load("data/Splash_Screens/Player1_Win.png");
     Player2_Wins = IMG_Load("data/Splash_Screens/Player2_Win.png");
-    bgType = 0;
+    bgType = 1;
+    IsInMenu = true;
 
     //Player Special
     PlayerSpecialBar = IMG_Load("data/SpecialBar.png");
@@ -31,17 +32,24 @@ void Hud::Update( int PlayerHealth, int EnemyHealth, int PlayerSpecial )
     PlayerSpecialBarPos.x = 640 - ( PlayerSpecial * 8 );
 
     key = SDL_GetKeyState(NULL);
-    if ( bgType == 1 && key[SDLK_RETURN] )
+    if ( bgType == 1 )
     {
-        bgType = 0;
+        if ( key[SDLK_1] )
+        {
+            Level.selectMap( 1 );
+            IsInMenu = false;
+            bgType = 0;
+        }
     }
     if ( PlayerHealth <= 1 )
     {
         bgType = 3;
+        IsInMenu = true;
     }
     if ( EnemyHealth <= 1 )
     {
         bgType = 2;
+        IsInMenu = true;
     }
     if ( PlayerSpecialBarPos.x < 598 )
     {
@@ -51,12 +59,14 @@ void Hud::Update( int PlayerHealth, int EnemyHealth, int PlayerSpecial )
 
 void Hud::draw( SDL_Surface *Screen )
 {
-    SDL_BlitSurface( PlayerHealthBar, NULL, Screen, &PlayerHealthBarPos );
-    SDL_BlitSurface( EnemyHealthBar, NULL, Screen, &EnemyHealthBarPos );
-    SDL_BlitSurface( PlayerSpecialBar, NULL, Screen, &PlayerSpecialBarPos );
-    if ( bgType == 1 )
+
+    if ( bgType == 0 )
     {
-        SDL_BlitSurface( HowToPlay, NULL, Screen, NULL );
+        Level.draw( Screen, IsInMenu );
+    }
+    else if ( bgType == 1 )
+    {
+        SDL_BlitSurface( SelectMap, NULL, Screen, NULL );
     }
     else if ( bgType == 2 )
     {
@@ -66,6 +76,10 @@ void Hud::draw( SDL_Surface *Screen )
     {
         SDL_BlitSurface( Player2_Wins, NULL, Screen, NULL );
     }
+
+    SDL_BlitSurface( PlayerHealthBar, NULL, Screen, &PlayerHealthBarPos );
+    SDL_BlitSurface( EnemyHealthBar, NULL, Screen, &EnemyHealthBarPos );
+    SDL_BlitSurface( PlayerSpecialBar, NULL, Screen, &PlayerSpecialBarPos );
 }
 
 Hud::~Hud()

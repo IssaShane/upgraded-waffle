@@ -12,7 +12,7 @@ class Player
         //Action Functions
         Player();
         ~Player();
-        void draw( SDL_Surface *Screen );
+        void draw( SDL_Surface *Screen, bool IsInMenu );
         void getInput();
         void checkHealth( SDL_Rect POS, bool IsAttacking );
 

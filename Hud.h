@@ -3,6 +3,7 @@
 
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
+#include "LevelManager.h"
 
 class Hud
 {
@@ -11,6 +12,8 @@ class Hud
         ~Hud();
         void draw( SDL_Surface *Screen );
         void Update( int PlayerHealth, int EnemyHealth, int PlayerSpecial );
+
+        bool IsInMenu;
 
     private:
         //Player
@@ -22,7 +25,7 @@ class Hud
         SDL_Rect EnemyHealthBarPos;
 
         //Background Screens
-        SDL_Surface *HowToPlay;
+        SDL_Surface *SelectMap;
         SDL_Surface *Player1_Wins;
         SDL_Surface *Player2_Wins;
         int bgType;
@@ -31,6 +34,9 @@ class Hud
         //Player Special
         SDL_Surface *PlayerSpecialBar;
         SDL_Rect PlayerSpecialBarPos;
+
+        //Level Select
+        LevelManager Level;
 };
 
 #endif

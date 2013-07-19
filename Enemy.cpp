@@ -21,9 +21,10 @@ Enemy::Enemy()
     Attacking = false;
 }
 
-void Enemy::draw( SDL_Surface *Screen )
+void Enemy::draw( SDL_Surface *Screen, bool IsInMenu )
 {
-    SDL_BlitSurface( Img, &Clip, Screen, &Pos );
+    if ( IsInMenu == false )
+        SDL_BlitSurface( Img, &Clip, Screen, &Pos );
 }
 
 void Enemy::getInput()
