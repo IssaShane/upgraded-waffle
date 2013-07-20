@@ -87,6 +87,11 @@ void Player::checkHealth( SDL_Rect POS, bool IsAttacking )
     }
 }
 
+void Player::setPosY( int newy )
+{
+    Pos.y = newy;
+}
+
 int Player::returnHealth()
 {
     return Health;

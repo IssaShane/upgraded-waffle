@@ -4,7 +4,7 @@ System::System()
 {
     quit = false;
     SDL_Init( SDL_INIT_EVERYTHING );
-    frameRate = 1000 / 60;
+    frameRate = 1000 / 30;
 }
 
 void System::Run()

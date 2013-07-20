@@ -14,10 +14,9 @@ void Graphics::draw()
     Baddy.checkHealth( Hero.returnPos(), Hero.returnAttacking(), Hero.returnPower() );
     Baddy.getInput();
 
-    SDL_BlitSurface( bg, NULL, Screen, NULL );
-    Baddy.draw( Screen );
-    Hero.draw( Screen );
     Health.draw( Screen );
+    Baddy.draw( Screen, Health.IsInMenu );
+    Hero.draw( Screen, Health.IsInMenu );
     SDL_Flip( Screen );
 }
 

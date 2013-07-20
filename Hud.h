@@ -15,6 +15,9 @@ class Hud
 
         bool IsInMenu;
 
+        //Level Select
+        LevelManager Level;
+
     private:
         //Player
         SDL_Surface *PlayerHealthBar;
@@ -35,8 +38,7 @@ class Hud
         SDL_Surface *PlayerSpecialBar;
         SDL_Rect PlayerSpecialBarPos;
 
-        //Level Select
-        LevelManager Level;
+
 };
 
 #endif

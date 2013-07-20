@@ -40,6 +40,12 @@ void Hud::Update( int PlayerHealth, int EnemyHealth, int PlayerSpecial )
             IsInMenu = false;
             bgType = 0;
         }
+        if ( key[SDLK_2] )
+        {
+            Level.selectMap( 2 );
+            IsInMenu = false;
+            bgType = 0;
+        }
     }
     if ( PlayerHealth <= 1 )
     {
@@ -79,7 +85,7 @@ void Hud::draw( SDL_Surface *Screen )
 
     SDL_BlitSurface( PlayerHealthBar, NULL, Screen, &PlayerHealthBarPos );
     SDL_BlitSurface( EnemyHealthBar, NULL, Screen, &EnemyHealthBarPos );
-    SDL_BlitSurface( PlayerSpecialBar, NULL, Screen, &PlayerSpecialBarPos );
+//    SDL_BlitSurface( PlayerSpecialBar, NULL, Screen, &PlayerSpecialBarPos );
 }
 
 Hud::~Hud()
