@@ -37,7 +37,7 @@ void Player::getInput()
 {
     key = SDL_GetKeyState(NULL);
     //Attacking
-    if ( key[SDLK_SPACE] )
+    if ( key[SDLK_DOWN] )
     {
         Attacking = true;
         frame = 2;
@@ -78,7 +78,7 @@ void Player::checkHealth( SDL_Rect POS, bool IsAttacking )
     if ( IsAttacking == true )
     {
         if ( Pos.x < POS.x + POS.w &&
-            Pos.x + Pos.w > POS.w &&
+            Pos.x + Pos.w > POS.x &&
             Pos.y < POS.y + POS.h &&
             Pos.y + Pos.h > POS.y )
         {

@@ -73,9 +73,7 @@ void Enemy::checkHealth( SDL_Rect POS, bool IsAttacking, int Power )
     if ( IsAttacking == true )
     {
         if ( Pos.x         < POS.x + POS.w &&
-             Pos.x + Pos.w > POS.w         &&
-             Pos.y         < POS.y + POS.h &&
-             Pos.y + Pos.h > POS.y )
+             Pos.x + Pos.w > POS.x )
         {
             Health -= Power;
         }
