@@ -82,6 +82,14 @@ void Enemy::checkHealth( SDL_Rect POS, bool IsAttacking, int Power )
     }
 }
 
+void Enemy::UpdateY( int CollY )
+{
+    if ( Pos.y > CollY - 48 )
+    {
+        Pos.y -= 1;
+    }
+}
+
 SDL_Rect Enemy::returnPos()
 {
     return Pos;

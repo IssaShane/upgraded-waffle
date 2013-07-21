@@ -15,6 +15,7 @@ class Player
         void getInput();
         void checkHealth( SDL_Rect POS, bool IsAttacking );
         void setPosY( int newy );
+        void UpdateY( int CollY );
 
         //Return Functions
         int returnHealth();

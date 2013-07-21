@@ -4,6 +4,7 @@
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
 #include "Level.h"
+#include "Player.h"
 
 class LevelManager
 {
@@ -15,8 +16,10 @@ class LevelManager
 
     private:
         int activeMap;
+        Player Hero;
         Level Level1;
         Level Level2;
+        Level Level3;
 };
 
 #endif

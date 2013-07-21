@@ -12,6 +12,7 @@ class Enemy
         void draw( SDL_Surface *Screen, bool IsInMenu );
         void getInput();
         void checkHealth( SDL_Rect POS, bool IsAttacking, int Power );
+        void UpdateY( int CollY );
 
         //Return Functions
         SDL_Rect returnPos();

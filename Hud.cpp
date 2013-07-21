@@ -46,6 +46,12 @@ void Hud::Update( int PlayerHealth, int EnemyHealth, int PlayerSpecial )
             IsInMenu = false;
             bgType = 0;
         }
+        if ( key[SDLK_3] )
+        {
+            Level.selectMap( 3 );
+            IsInMenu = false;
+            bgType = 0;
+        }
     }
     if ( PlayerHealth <= 1 )
     {

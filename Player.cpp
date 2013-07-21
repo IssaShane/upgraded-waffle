@@ -92,6 +92,14 @@ void Player::setPosY( int newy )
     Pos.y = newy;
 }
 
+void Player::UpdateY( int CollY )
+{
+    if ( Pos.y > CollY - 48 )
+    {
+        Pos.y -= 1;
+    }
+}
+
 int Player::returnHealth()
 {
     return Health;
