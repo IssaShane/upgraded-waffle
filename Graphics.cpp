@@ -12,7 +12,7 @@ void Graphics::draw()
     Hero.checkHealth( Baddy.returnPos(), Baddy.returnAttacking() );
     Hero.UpdateY( Health.Level.returnCollY(), Health.Level.returnCurrentLevel() );
     Hero.updateAlt( Health.Level.returnAltStart(), Health.Level.returnAltEnd(), Health.Level.returnAltChange() );
-    Health.Update( Hero.returnHealth(), Baddy.returnHealth(), Hero.returnSpecial() );
+    Health.Update( Hero.returnHealth(), Baddy.returnHealth(), Hero.returnBoost(), Baddy.returnBoost() );
     Baddy.checkHealth( Hero.returnPos(), Hero.returnAttacking(), Hero.returnPower() );
     Baddy.UpdateY( Health.Level.returnCollY(), Health.Level.returnCurrentLevel() );
     Baddy.updateAltChange( Health.Level.returnAltStart(), Health.Level.returnAltEnd() );

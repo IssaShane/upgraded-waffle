@@ -19,6 +19,7 @@ class Enemy
         SDL_Rect returnPos();
         int returnHealth();
         bool returnAttacking();
+        double returnBoost();
 
     private:
         //Image Properties
@@ -34,6 +35,8 @@ class Enemy
         int Direction;
         int frame;
         bool IsAltChange;
+        double Boost;
+        int Speed;
 };
 
 #endif

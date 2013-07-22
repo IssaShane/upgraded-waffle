@@ -22,8 +22,8 @@ class Player
         int returnHealth();
         SDL_Rect returnPos();
         bool returnAttacking();
-        int returnSpecial();
         int returnPower();
+        double returnBoost();
 
     private:
         //Image Properties
@@ -38,10 +38,11 @@ class Player
         //Stats
         bool Attacking;
         int Health;
-        int Special;
+        double Boost;
         int Power;
         int Altitude;
         bool IsAltChange;
+        int Speed;
 };
 
 #endif

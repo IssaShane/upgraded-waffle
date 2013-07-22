@@ -17,22 +17,18 @@ Player::Player()
 
     //Stats
     frame = 0;
-    Special = 0;
+    Boost = 5;
     Power = 1;
     Health = 100;
     Altitude = 0;
     IsAltChange = false;
+    Speed = 5;
 }
 
 void Player::draw( SDL_Surface *Screen, bool IsInMenu )
 {
     if ( IsInMenu == false )
         SDL_BlitSurface( Img, &Clip, Screen, &Pos );
-
-    if ( Special >= 5 )
-    {
-        std::cout << "You Have A Special.\n";
-    }
 }
 
 void Player::getInput()
@@ -43,7 +39,6 @@ void Player::getInput()
     {
         Attacking = true;
         frame = 2;
-        Special += 1;
     }
     else
     {
@@ -54,17 +49,33 @@ void Player::getInput()
     //Movement
     if ( key[SDLK_RIGHT] )
     {
-        Pos.x += 5;
+        Pos.x += Speed;
         Direction = 3;
         Clip.y = 48;
         frame += 1;
     }
     if ( key[SDLK_LEFT] )
     {
-        Pos.x -= 5;
+        Pos.x -= Speed;
         Direction = 2;
         Clip.y = 0;
         frame += 1;
+    }
+
+    //Boost
+    if ( key[SDLK_UP] )
+    {
+        Speed = 10;
+        Boost -= 0.05;
+    }
+    else
+    {
+        Speed = 5;
+    }
+
+    if ( Boost <= 0 )
+    {
+        Speed = 5;
     }
 
     //Updating frame and direction
@@ -113,11 +124,11 @@ void Player::UpdateY( int CollY, int currentLevel )
 
     if ( Pos.y > CollY - 48 )
     {
-        Pos.y -= 5;
+        Pos.y -= 15;
     }
     if ( Pos.y < CollY - 48 )
     {
-        Pos.y += 5;
+        Pos.y += 15;
     }
 }
 
@@ -148,14 +159,14 @@ bool Player::returnAttacking()
     return Attacking;
 }
 
-int Player::returnSpecial()
-{
-    return Special;
-}
-
 int Player::returnPower()
 {
     return Power;
+}
+
+double Player::returnBoost()
+{
+    return Boost;
 }
 
 Player::~Player()

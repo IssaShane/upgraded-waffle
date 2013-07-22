@@ -11,7 +11,7 @@ class Hud
         Hud();
         ~Hud();
         void draw( SDL_Surface *Screen );
-        void Update( int PlayerHealth, int EnemyHealth, int PlayerSpecial );
+        void Update( int PlayerHealth, int EnemyHealth, double PlayerSpecial, double EnemyBoost );
 
         bool IsInMenu;
 
@@ -34,9 +34,13 @@ class Hud
         int bgType;
         Uint8 *key;
 
-        //Player Special
-        SDL_Surface *PlayerSpecialBar;
-        SDL_Rect PlayerSpecialBarPos;
+        //Player Boost
+        SDL_Surface *PlayerBoostBar;
+        SDL_Rect PlayerBoostBarPos;
+
+        //Enemy Boost
+        SDL_Surface *EnemyBoostBar;
+        SDL_Rect EnemyBoostBarPos;
 
 
 };

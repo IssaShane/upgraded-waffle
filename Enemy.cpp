@@ -20,6 +20,8 @@ Enemy::Enemy()
     Health = 100;
     Attacking = false;
     IsAltChange = false;
+    Speed = 5;
+    Boost = 5;
 }
 
 void Enemy::draw( SDL_Surface *Screen, bool IsInMenu )
@@ -34,14 +36,14 @@ void Enemy::getInput()
     //Movement
     if ( key[SDLK_d] )
     {
-        Pos.x += 5;
+        Pos.x += Speed;
         Direction = 3;
         Clip.y = 0;
         frame += 1;
     }
     if ( key[SDLK_a] )
     {
-        Pos.x -= 5;
+        Pos.x -= Speed;
         Direction = 2;
         Clip.y = 48;
         frame += 1;
@@ -58,6 +60,22 @@ void Enemy::getInput()
     {
         Attacking = false;
         Clip.x = 0;
+    }
+
+    //Boost
+    if ( key[SDLK_w] )
+    {
+        Speed = 10;
+        Boost -= 0.05;
+    }
+    else
+    {
+        Speed = 5;
+    }
+
+    if ( Boost <= 0 )
+    {
+        Speed = 5;
     }
 
     //Updating Frame and Direction
@@ -100,11 +118,11 @@ void Enemy::UpdateY( int CollY, int currentLevel )
 
     if ( Pos.y > CollY - 48 )
     {
-        Pos.y -= 5;
+        Pos.y -= 15;
     }
     if ( Pos.y < CollY - 48 )
     {
-        Pos.y += 5;
+        Pos.y += 15;
     }
 }
 
@@ -133,6 +151,11 @@ int Enemy::returnHealth()
 bool Enemy::returnAttacking()
 {
     return Attacking;
+}
+
+double Enemy::returnBoost()
+{
+    return Boost;
 }
 
 Enemy::~Enemy()
