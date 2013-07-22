@@ -34,10 +34,15 @@
 		</Compiler>
 		<Unit filename="Enemy.cpp" />
 		<Unit filename="Enemy.h" />
+		<Unit filename="Entity.h" />
 		<Unit filename="Graphics.cpp" />
 		<Unit filename="Graphics.h" />
 		<Unit filename="Hud.cpp" />
 		<Unit filename="Hud.h" />
+		<Unit filename="Level.cpp" />
+		<Unit filename="Level.h" />
+		<Unit filename="LevelManager.cpp" />
+		<Unit filename="LevelManager.h" />
 		<Unit filename="Player.cpp" />
 		<Unit filename="Player.h" />
 		<Unit filename="System.cpp" />
