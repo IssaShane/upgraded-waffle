@@ -66,6 +66,12 @@ void Enemy::getInput()
         frame = 0;
     }
     Clip.x = frame * 32;
+
+    //Wrap to other side of screen
+    if ( Pos.x < 0 )
+        Pos.x = 640;
+    if ( Pos.x > 640 )
+        Pos.x = 0;
 }
 
 void Enemy::checkHealth( SDL_Rect POS, bool IsAttacking, int Power )

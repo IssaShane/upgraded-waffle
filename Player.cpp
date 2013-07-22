@@ -73,6 +73,12 @@ void Player::getInput()
         frame = 0;
     }
     Clip.x = frame * 32;
+
+    //Wrap player to other side of screen
+    if ( Pos.x < 0 )
+        Pos.x = 640;
+    if ( Pos.x > 640 )
+        Pos.x = 0;
 }
 
 void Player::checkHealth( SDL_Rect POS, bool IsAttacking )
