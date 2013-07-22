@@ -15,7 +15,8 @@ class Player
         void getInput();
         void checkHealth( SDL_Rect POS, bool IsAttacking );
         void setPosY( int newy );
-        void UpdateY( int CollY );
+        void UpdateY( int CollY, int currentLevel );
+        void updateAlt( int AltChangeStart, int AltChangeEnd, int AltChange );
 
         //Return Functions
         int returnHealth();
@@ -39,6 +40,8 @@ class Player
         int Health;
         int Special;
         int Power;
+        int Altitude;
+        bool IsAltChange;
 };
 
 #endif

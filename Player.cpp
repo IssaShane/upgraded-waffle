@@ -20,6 +20,8 @@ Player::Player()
     Special = 0;
     Power = 1;
     Health = 100;
+    Altitude = 0;
+    IsAltChange = false;
 }
 
 void Player::draw( SDL_Surface *Screen, bool IsInMenu )
@@ -92,11 +94,28 @@ void Player::setPosY( int newy )
     Pos.y = newy;
 }
 
-void Player::UpdateY( int CollY )
+void Player::UpdateY( int CollY, int currentLevel )
 {
+    if ( currentLevel == 4 && IsAltChange == true )
+    {
+        CollY = 352;
+    }
+
     if ( Pos.y > CollY - 48 )
     {
         Pos.y -= 1;
+    }
+    if ( Pos.y < CollY - 48 )
+    {
+        Pos.y += 1;
+    }
+}
+
+void Player::updateAlt( int AltChangeStart, int AltChangeEnd, int AltChange )
+{
+    if ( Pos.x > AltChangeStart && Pos.x < AltChangeEnd )
+    {
+        IsAltChange = true;
     }
 }
 
