@@ -100,14 +100,18 @@ void Player::UpdateY( int CollY, int currentLevel )
     {
         CollY = 352;
     }
+    else if ( currentLevel == 4 && IsAltChange == false )
+    {
+        CollY = 224;
+    }
 
     if ( Pos.y > CollY - 48 )
     {
-        Pos.y -= 1;
+        Pos.y -= 5;
     }
     if ( Pos.y < CollY - 48 )
     {
-        Pos.y += 1;
+        Pos.y += 5;
     }
 }
 
@@ -116,6 +120,10 @@ void Player::updateAlt( int AltChangeStart, int AltChangeEnd, int AltChange )
     if ( Pos.x > AltChangeStart && Pos.x < AltChangeEnd )
     {
         IsAltChange = true;
+    }
+    else
+    {
+        IsAltChange = false;
     }
 }
 

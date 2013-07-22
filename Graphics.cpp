@@ -10,10 +10,12 @@ void Graphics::draw()
 {
     Hero.getInput();
     Hero.checkHealth( Baddy.returnPos(), Baddy.returnAttacking() );
-    Hero.UpdateY( Health.Level.returnCollY() );
+    Hero.UpdateY( Health.Level.returnCollY(), Health.Level.returnCurrentLevel() );
+    Hero.updateAlt( Health.Level.returnAltStart(), Health.Level.returnAltEnd(), Health.Level.returnAltChange() );
     Health.Update( Hero.returnHealth(), Baddy.returnHealth(), Hero.returnSpecial() );
     Baddy.checkHealth( Hero.returnPos(), Hero.returnAttacking(), Hero.returnPower() );
-    Baddy.UpdateY( Health.Level.returnCollY() );
+    Baddy.UpdateY( Health.Level.returnCollY(), Health.Level.returnCurrentLevel() );
+    Baddy.updateAltChange( Health.Level.returnAltStart(), Health.Level.returnAltEnd() );
     Baddy.getInput();
 
     Health.draw( Screen );

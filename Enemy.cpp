@@ -19,6 +19,7 @@ Enemy::Enemy()
     frame = 0;
     Health = 100;
     Attacking = false;
+    IsAltChange = false;
 }
 
 void Enemy::draw( SDL_Surface *Screen, bool IsInMenu )
@@ -80,11 +81,36 @@ void Enemy::checkHealth( SDL_Rect POS, bool IsAttacking, int Power )
     }
 }
 
-void Enemy::UpdateY( int CollY )
+void Enemy::UpdateY( int CollY, int currentLevel )
 {
+    if ( currentLevel == 4 && IsAltChange == true )
+    {
+        CollY = 352;
+    }
+    else if ( currentLevel == 4 && IsAltChange == false )
+    {
+        CollY = 224;
+    }
+
     if ( Pos.y > CollY - 48 )
     {
-        Pos.y -= 1;
+        Pos.y -= 5;
+    }
+    if ( Pos.y < CollY - 48 )
+    {
+        Pos.y += 5;
+    }
+}
+
+void Enemy::updateAltChange( int AltChangeStart, int AltChangeEnd )
+{
+    if ( Pos.x > AltChangeStart && Pos.x < AltChangeEnd )
+    {
+        IsAltChange = true;
+    }
+    else
+    {
+        IsAltChange = false;
     }
 }
 

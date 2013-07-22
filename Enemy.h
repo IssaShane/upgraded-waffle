@@ -12,7 +12,8 @@ class Enemy
         void draw( SDL_Surface *Screen, bool IsInMenu );
         void getInput();
         void checkHealth( SDL_Rect POS, bool IsAttacking, int Power );
-        void UpdateY( int CollY );
+        void UpdateY( int CollY, int currentLevel );
+        void updateAltChange( int AltChangeStart, int AltChangeEnd );
 
         //Return Functions
         SDL_Rect returnPos();
@@ -32,6 +33,7 @@ class Enemy
         bool Attacking;
         int Direction;
         int frame;
+        bool IsAltChange;
 };
 
 #endif
