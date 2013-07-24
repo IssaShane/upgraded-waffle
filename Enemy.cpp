@@ -72,6 +72,11 @@ void Enemy::getInput()
         Attacking = false;
         Clip.x = 0;
     }
+
+    if ( Special <= 0 )
+    {
+        Power = 1;
+    }
     //Boost
     if ( key[SDLK_w] )
     {
