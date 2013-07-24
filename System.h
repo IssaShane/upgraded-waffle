@@ -2,6 +2,7 @@
 #define SYSTEM_H
 
 #include "SDL/SDL.h"
+#include "SDL/SDL_image.h"
 #include "Graphics.h"
 
 class System

@@ -5,6 +5,7 @@ System::System()
     quit = false;
     SDL_Init( SDL_INIT_EVERYTHING );
     frameRate = 1000 / 30;
+    SDL_WM_SetIcon( IMG_Load("data/Icon.png"), NULL );
 }
 
 void System::Run()

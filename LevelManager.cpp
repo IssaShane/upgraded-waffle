@@ -45,6 +45,10 @@ int LevelManager::returnCollY()
     {
         return Level4.Colly;
     }
+    else
+    {
+        return 0;
+    }
 }
 
 int LevelManager::returnAltChange()
@@ -52,6 +56,10 @@ int LevelManager::returnAltChange()
     if ( activeMap == 4 )
     {
         return 96;
+    }
+    else
+    {
+        return 0;
     }
 }
 
@@ -61,6 +69,10 @@ int LevelManager::returnAltStart()
     {
         return 128;
     }
+    else
+    {
+        return 0;
+    }
 }
 
 int LevelManager::returnAltEnd()
@@ -68,6 +80,10 @@ int LevelManager::returnAltEnd()
     if ( activeMap == 4 )
     {
         return 480;
+    }
+    else
+    {
+        return 0;
     }
 }
 

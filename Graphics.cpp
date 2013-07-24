@@ -3,13 +3,12 @@
 Graphics::Graphics()
 {
     Screen = SDL_SetVideoMode( 640, 480, 32, SDL_SWSURFACE );
-    bg = IMG_Load("data/Map1.png");
 }
 
 void Graphics::draw()
 {
     Hero.getInput();
-    Hero.checkHealth( Baddy.returnPos(), Baddy.returnAttacking() );
+    Hero.checkHealth( Baddy.returnPos(), Baddy.returnAttacking(), Baddy.returnPower() );
     Hero.UpdateY( Health.Level.returnCollY(), Health.Level.returnCurrentLevel() );
     Hero.updateAlt( Health.Level.returnAltStart(), Health.Level.returnAltEnd(), Health.Level.returnAltChange() );
     Health.Update( Hero.returnHealth(), Baddy.returnHealth(), Hero.returnBoost(), Baddy.returnBoost() );

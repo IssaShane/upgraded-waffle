@@ -3,6 +3,7 @@
 
 #include "SDL/SDL.h"
 #include "SDL/SDL_image.h"
+#include <iostream>
 
 class Enemy
 {
@@ -11,7 +12,7 @@ class Enemy
         ~Enemy();
         void draw( SDL_Surface *Screen, bool IsInMenu );
         void getInput();
-        void checkHealth( SDL_Rect POS, bool IsAttacking, int Power );
+        void checkHealth( SDL_Rect POS, bool IsAttacking, int power );
         void UpdateY( int CollY, int currentLevel );
         void updateAltChange( int AltChangeStart, int AltChangeEnd );
 
@@ -20,6 +21,7 @@ class Enemy
         int returnHealth();
         bool returnAttacking();
         double returnBoost();
+        int returnPower();
 
     private:
         //Image Properties
@@ -37,6 +39,7 @@ class Enemy
         bool IsAltChange;
         double Boost;
         int Speed;
+        int Power;
 };
 
 #endif

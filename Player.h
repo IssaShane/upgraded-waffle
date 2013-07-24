@@ -13,7 +13,7 @@ class Player
         ~Player();
         void draw( SDL_Surface *Screen, bool IsInMenu );
         void getInput();
-        void checkHealth( SDL_Rect POS, bool IsAttacking );
+        void checkHealth( SDL_Rect POS, bool IsAttacking, int power );
         void setPosY( int newy );
         void UpdateY( int CollY, int currentLevel );
         void updateAlt( int AltChangeStart, int AltChangeEnd, int AltChange );

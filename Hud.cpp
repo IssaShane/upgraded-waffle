@@ -3,12 +3,12 @@
 Hud::Hud()
 {
     //Player
-    PlayerHealthBar = IMG_Load("data/blood_red_bar.png");
+    PlayerHealthBar = IMG_Load("data/PlayerHealthBar.png");
     PlayerHealthBarPos.x = 340;
     PlayerHealthBarPos.y = 0;
 
     //Enemy
-    EnemyHealthBar = IMG_Load("data/blood_red_bar.png");
+    EnemyHealthBar = IMG_Load("data/EnemyHealthBar.png");
     EnemyHealthBarPos.x = 0;
     EnemyHealthBarPos.y = 0;
 
@@ -38,7 +38,7 @@ void Hud::Update( int PlayerHealth, int EnemyHealth, double PlayerSpecial, doubl
     EnemyBoostBarPos.x = -16 + ( EnemyBoost * 8 );
 
     key = SDL_GetKeyState(NULL);
-    if ( bgType == 1 )
+    if ( bgType == 1.0 )
     {
         if ( key[SDLK_1] )
         {
@@ -63,6 +63,19 @@ void Hud::Update( int PlayerHealth, int EnemyHealth, double PlayerSpecial, doubl
             Level.selectMap( 4 );
             IsInMenu = false;
             bgType = 0;
+        }
+    }
+    if ( bgType == 1.2 )
+    {
+        if ( key[SDLK_1] )
+        {
+            bgType = 1.0;
+            AIEngaged = true;
+        }
+        if ( key[SDLK_2] )
+        {
+            bgType = 1.0;
+            AIEngaged = false;
         }
     }
     if ( PlayerHealth <= 1 )
@@ -92,6 +105,10 @@ void Hud::draw( SDL_Surface *Screen )
     {
         SDL_BlitSurface( SelectMap, NULL, Screen, NULL );
     }
+    else if ( bgType == 1.2 )
+    {
+        SDL_BlitSurface( SelectPlayer, NULL, Screen, NULL );
+    }
     else if ( bgType == 2 )
     {
         SDL_BlitSurface( Player1_Wins, NULL, Screen, NULL );
@@ -101,10 +118,18 @@ void Hud::draw( SDL_Surface *Screen )
         SDL_BlitSurface( Player2_Wins, NULL, Screen, NULL );
     }
 
-    SDL_BlitSurface( PlayerHealthBar, NULL, Screen, &PlayerHealthBarPos );
-    SDL_BlitSurface( EnemyHealthBar, NULL, Screen, &EnemyHealthBarPos );
-    SDL_BlitSurface( PlayerBoostBar, NULL, Screen, &PlayerBoostBarPos );
-    SDL_BlitSurface( EnemyBoostBar, NULL, Screen, &EnemyBoostBarPos );
+    if ( IsInMenu == false )
+    {
+        SDL_BlitSurface( PlayerHealthBar, NULL, Screen, &PlayerHealthBarPos );
+        SDL_BlitSurface( EnemyHealthBar, NULL, Screen, &EnemyHealthBarPos );
+        SDL_BlitSurface( PlayerBoostBar, NULL, Screen, &PlayerBoostBarPos );
+        SDL_BlitSurface( EnemyBoostBar, NULL, Screen, &EnemyBoostBarPos );
+    }
+}
+
+bool Hud::returnAIEngaged()
+{
+    return AIEngaged;
 }
 
 Hud::~Hud()
@@ -112,4 +137,5 @@ Hud::~Hud()
     SDL_FreeSurface( PlayerHealthBar );
     SDL_FreeSurface( PlayerBoostBar );
     SDL_FreeSurface( EnemyHealthBar );
+    SDL_FreeSurface( EnemyBoostBar );
 }

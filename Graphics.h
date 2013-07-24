@@ -16,7 +16,6 @@ class Graphics
 
     private:
         SDL_Surface *Screen;
-        SDL_Surface *bg;
         Player Hero;
         Enemy Baddy;
         Hud Health;

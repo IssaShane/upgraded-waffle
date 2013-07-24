@@ -34,10 +34,20 @@ void Player::draw( SDL_Surface *Screen, bool IsInMenu )
 void Player::getInput()
 {
     key = SDL_GetKeyState(NULL);
-    //Attacking
+    //Primary Attack
     if ( key[SDLK_DOWN] )
     {
+        Power = 1;
         Attacking = true;
+        Clip.x = 64;
+        frame = 2;
+    }
+    //Special Attack
+    else if ( key[SDLK_RCTRL] )
+    {
+        Power = 5;
+        Attacking = true;
+        Clip.x = 64;
         frame = 2;
     }
     else
@@ -92,7 +102,7 @@ void Player::getInput()
         Pos.x = 0;
 }
 
-void Player::checkHealth( SDL_Rect POS, bool IsAttacking )
+void Player::checkHealth( SDL_Rect POS, bool IsAttacking, int power )
 {
     if ( IsAttacking == true )
     {
@@ -101,7 +111,7 @@ void Player::checkHealth( SDL_Rect POS, bool IsAttacking )
             Pos.y < POS.y + POS.h &&
             Pos.y + Pos.h > POS.y )
         {
-            Health -= 1;
+            Health -= power;
         }
     }
 }

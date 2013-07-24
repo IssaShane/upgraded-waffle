@@ -39,6 +39,10 @@
 		<Unit filename="Graphics.h" />
 		<Unit filename="Hud.cpp" />
 		<Unit filename="Hud.h" />
+		<Unit filename="Item.cpp" />
+		<Unit filename="Item.h" />
+		<Unit filename="ItemManager.cpp" />
+		<Unit filename="ItemManager.h" />
 		<Unit filename="Level.cpp" />
 		<Unit filename="Level.h" />
 		<Unit filename="LevelManager.cpp" />

@@ -13,6 +13,9 @@ class Hud
         void draw( SDL_Surface *Screen );
         void Update( int PlayerHealth, int EnemyHealth, double PlayerSpecial, double EnemyBoost );
 
+        //return funcitons
+        bool returnAIEngaged();
+
         bool IsInMenu;
 
         //Level Select
@@ -29,10 +32,12 @@ class Hud
 
         //Background Screens
         SDL_Surface *SelectMap;
+        SDL_Surface *SelectPlayer;
         SDL_Surface *Player1_Wins;
         SDL_Surface *Player2_Wins;
-        int bgType;
+        double bgType;
         Uint8 *key;
+        bool AIEngaged;
 
         //Player Boost
         SDL_Surface *PlayerBoostBar;
