@@ -24,6 +24,7 @@ class Player
         bool returnAttacking();
         int returnPower();
         double returnBoost();
+        double returnSpecial();
 
     private:
         //Image Properties
@@ -43,6 +44,7 @@ class Player
         int Altitude;
         bool IsAltChange;
         int Speed;
+        double Special;
 };
 
 #endif

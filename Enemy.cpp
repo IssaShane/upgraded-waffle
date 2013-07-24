@@ -23,6 +23,7 @@ Enemy::Enemy()
     Speed = 5;
     Boost = 5;
     Power = 1;
+    Special = 5;
 }
 
 void Enemy::draw( SDL_Surface *Screen, bool IsInMenu )
@@ -64,6 +65,7 @@ void Enemy::getInput()
         Attacking = true;
         Clip.x = 64;
         frame = 2;
+        Special -= 1.5;
     }
     else
     {
@@ -168,6 +170,11 @@ double Enemy::returnBoost()
 int Enemy::returnPower()
 {
     return Power;
+}
+
+double Enemy::returnSpecial()
+{
+    return Special;
 }
 
 Enemy::~Enemy()

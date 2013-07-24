@@ -28,14 +28,26 @@ Hud::Hud()
     EnemyBoostBar = IMG_Load("data/SpecialBar.png");
     EnemyBoostBarPos.x = 0;
     EnemyBoostBarPos.y = 40;
+
+    //Player Special Bar
+    PlayerSpecialBar = IMG_Load("data/SpecialBar2.png");
+    PlayerSpecialBarPos.x = 640;
+    PlayerSpecialBarPos.y = 56;
+
+    //Enemy Special Bar
+    EnemySpecialBar = IMG_Load("data/SpecialBar2.png");
+    EnemySpecialBarPos.x = 0;
+    EnemySpecialBarPos.y = 56;
 }
 
-void Hud::Update( int PlayerHealth, int EnemyHealth, double PlayerSpecial, double EnemyBoost )
+void Hud::Update( int PlayerHealth, int EnemyHealth, double PlayerBoost, double EnemyBoost, double PlayerSpecial, double EnemySpecial )
 {
     PlayerHealthBarPos.x = 640 - ( PlayerHealth * 3 );
     EnemyHealthBarPos.x = -300 + ( EnemyHealth * 3 );
-    PlayerBoostBarPos.x = 640 - ( PlayerSpecial * 8 );
+    PlayerBoostBarPos.x = 640 - ( PlayerBoost * 8 );
     EnemyBoostBarPos.x = -16 + ( EnemyBoost * 8 );
+    PlayerSpecialBarPos.x = 640 - ( PlayerSpecial * 8 );
+    EnemySpecialBarPos.x = -16 + ( EnemySpecial * 8 );
 
     key = SDL_GetKeyState(NULL);
     if ( bgType == 1.0 )
@@ -124,6 +136,8 @@ void Hud::draw( SDL_Surface *Screen )
         SDL_BlitSurface( EnemyHealthBar, NULL, Screen, &EnemyHealthBarPos );
         SDL_BlitSurface( PlayerBoostBar, NULL, Screen, &PlayerBoostBarPos );
         SDL_BlitSurface( EnemyBoostBar, NULL, Screen, &EnemyBoostBarPos );
+        SDL_BlitSurface( PlayerSpecialBar, NULL, Screen, &PlayerSpecialBarPos );
+        SDL_BlitSurface( EnemySpecialBar, NULL, Screen, &EnemySpecialBarPos );
     }
 }
 

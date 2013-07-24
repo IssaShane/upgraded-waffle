@@ -23,6 +23,7 @@ Player::Player()
     Altitude = 0;
     IsAltChange = false;
     Speed = 5;
+    Special = 5;
 }
 
 void Player::draw( SDL_Surface *Screen, bool IsInMenu )
@@ -49,11 +50,17 @@ void Player::getInput()
         Attacking = true;
         Clip.x = 64;
         frame = 2;
+        Special -= 1.5;
     }
     else
     {
         Attacking = false;
         Clip.x = 0;
+    }
+
+    if ( Special <= 0 )
+    {
+        Power = 1;
     }
 
     //Movement
@@ -177,6 +184,11 @@ int Player::returnPower()
 double Player::returnBoost()
 {
     return Boost;
+}
+
+double Player::returnSpecial()
+{
+    return Special;
 }
 
 Player::~Player()

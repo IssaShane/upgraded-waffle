@@ -11,7 +11,7 @@ class Hud
         Hud();
         ~Hud();
         void draw( SDL_Surface *Screen );
-        void Update( int PlayerHealth, int EnemyHealth, double PlayerSpecial, double EnemyBoost );
+        void Update( int PlayerHealth, int EnemyHealth, double PlayerBoost, double EnemyBoost, double PlayerSpecial, double EnemySpecial );
 
         //return funcitons
         bool returnAIEngaged();
@@ -47,7 +47,13 @@ class Hud
         SDL_Surface *EnemyBoostBar;
         SDL_Rect EnemyBoostBarPos;
 
+        //Player Special
+        SDL_Surface *PlayerSpecialBar;
+        SDL_Rect PlayerSpecialBarPos;
 
+        //Enemy Special
+        SDL_Surface *EnemySpecialBar;
+        SDL_Rect EnemySpecialBarPos;
 };
 
 #endif

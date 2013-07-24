@@ -22,6 +22,7 @@ class Enemy
         bool returnAttacking();
         double returnBoost();
         int returnPower();
+        double returnSpecial();
 
     private:
         //Image Properties
@@ -40,6 +41,7 @@ class Enemy
         double Boost;
         int Speed;
         int Power;
+        double Special;
 };
 
 #endif
