@@ -24,6 +24,7 @@ Enemy::Enemy()
     Boost = 5;
     Power = 1;
     Special = 5;
+    IsEnabledShield = false;
 }
 
 void Enemy::draw( SDL_Surface *Screen, bool IsInMenu )
@@ -92,6 +93,16 @@ void Enemy::getInput()
         Speed = 5;
     }
 
+    //Shielding
+    if ( key[SDLK_e] )
+    {
+        IsEnabledShield = true;
+    }
+    else
+    {
+        IsEnabledShield = false;
+    }
+
     //Updating Frame and Direction
     if ( frame > 1 && Attacking == false )
     {
@@ -109,7 +120,7 @@ void Enemy::getInput()
 void Enemy::checkHealth( SDL_Rect POS, bool IsAttacking, int power )
 {
 
-    if ( IsAttacking == true )
+    if ( IsAttacking == true && IsEnabledShield == false )
     {
         if ( Pos.x         < POS.x + POS.w &&
              Pos.x + Pos.w > POS.x )

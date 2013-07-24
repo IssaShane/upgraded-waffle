@@ -45,6 +45,7 @@ class Player
         bool IsAltChange;
         int Speed;
         double Special;
+        bool IsEnabledShield;
 };
 
 #endif

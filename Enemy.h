@@ -42,6 +42,7 @@ class Enemy
         int Speed;
         int Power;
         double Special;
+        bool IsEnabledShield;
 };
 
 #endif

@@ -95,6 +95,16 @@ void Player::getInput()
         Speed = 5;
     }
 
+    //Sheild
+    if ( key[SDLK_RSHIFT] )
+    {
+        IsEnabledShield = true;
+    }
+    else
+    {
+        IsEnabledShield = false;
+    }
+
     //Updating frame and direction
     if ( frame > 1 && Attacking == false )
     {
@@ -111,7 +121,7 @@ void Player::getInput()
 
 void Player::checkHealth( SDL_Rect POS, bool IsAttacking, int power )
 {
-    if ( IsAttacking == true )
+    if ( IsAttacking == true && IsEnabledShield == false )
     {
         if ( Pos.x < POS.x + POS.w &&
             Pos.x + Pos.w > POS.x &&
