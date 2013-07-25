@@ -171,6 +171,19 @@ void Player::updateAlt( int AltChangeStart, int AltChangeEnd, int AltChange )
     }
 }
 
+void Player::UpdateItems( int AffectedObj, int Type )
+{
+    //If AffectedObj is the Player
+    if ( AffectedObj == 1 )
+    {
+        //If the power up is a BoostUp
+        if ( Type == 1 )
+        {
+            Boost = 5;
+        }
+    }
+}
+
 int Player::returnHealth()
 {
     return Health;

@@ -13,7 +13,7 @@ Hud::Hud()
     EnemyHealthBarPos.y = 0;
 
     //Background Screens
-    SelectMap = IMG_Load("data/Menu.png");
+    SelectMap = IMG_Load("data/SelectMap.png");
     Player1_Wins = IMG_Load("data/Splash_Screens/Player1_Win.png");
     Player2_Wins = IMG_Load("data/Splash_Screens/Player2_Win.png");
     bgType = 1;
@@ -95,7 +95,7 @@ void Hud::Update( int PlayerHealth, int EnemyHealth, double PlayerBoost, double 
         bgType = 3;
         IsInMenu = true;
     }
-    if ( EnemyHealth <= 1 )
+    else if ( EnemyHealth <= 1 )
     {
         bgType = 2;
         IsInMenu = true;
@@ -104,6 +104,14 @@ void Hud::Update( int PlayerHealth, int EnemyHealth, double PlayerBoost, double 
     {
         PlayerBoostBarPos.x = 598;
     }
+    if ( PlayerSpecialBarPos.x < 598 )
+    {
+        PlayerSpecialBarPos.x = 598;
+    }
+    if ( EnemyBoostBarPos.x > 0 )
+        EnemyBoostBarPos.x = 0;
+    if ( EnemySpecialBarPos.x > 0 )
+        EnemySpecialBarPos.x = 0;
 }
 
 void Hud::draw( SDL_Surface *Screen )
