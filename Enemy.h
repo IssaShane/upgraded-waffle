@@ -15,6 +15,7 @@ class Enemy
         void checkHealth( SDL_Rect POS, bool IsAttacking, int power );
         void UpdateY( int CollY, int currentLevel );
         void updateAltChange( int AltChangeStart, int AltChangeEnd );
+        void UpdateItems( int Type, int TimesCollected );
 
         //Return Functions
         SDL_Rect returnPos();

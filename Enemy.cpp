@@ -163,6 +163,15 @@ void Enemy::updateAltChange( int AltChangeStart, int AltChangeEnd )
     }
 }
 
+void Enemy::UpdateItems( int Type, int TimesCollected )
+{
+    //If the power up is a BoostUp
+    if ( Type == 1 && TimesCollected == 1 )
+    {
+        Boost = 5;
+    }
+}
+
 SDL_Rect Enemy::returnPos()
 {
     return Pos;
