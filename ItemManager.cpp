@@ -12,7 +12,7 @@ void ItemManager::draw( SDL_Surface *Screen, bool IsInMenu )
         Item1.draw( Screen );
 }
 
-void ItemManager::Update( SDL_Rect PlayerPos, SDL_Rect EnemyPos, int CollY )
+void ItemManager::Update( SDL_Rect PlayerPos, SDL_Rect EnemyPos, int CollY, int currentLevel )
 {
     //If collided with player
     if ( Item1.returnPos().x < PlayerPos.x + PlayerPos.w &&
@@ -28,7 +28,7 @@ void ItemManager::Update( SDL_Rect PlayerPos, SDL_Rect EnemyPos, int CollY )
          {
              Item1.deActivate();
          }
-         Item1.Update( CollY );
+         Item1.Update( CollY, currentLevel );
     if ( Item1.returnPos().x < EnemyPos.x + EnemyPos.w &&
          Item1.returnPos().x + Item1.returnPos().w > EnemyPos.x &&
          Item1.returnPos().y < EnemyPos.y + EnemyPos.h &&
@@ -38,6 +38,14 @@ void ItemManager::Update( SDL_Rect PlayerPos, SDL_Rect EnemyPos, int CollY )
             currentItem = 0;
             Item1.Collect();
          }
+}
+
+void ItemManager::UpdateAlt( int AltStartChange, int AltEndChange, int AltChange )
+{
+    if ( currentItem == 0 )
+    {
+        Item1.UpdateAlt( AltStartChange, AltEndChange, AltChange );
+    }
 }
 
 int ItemManager::returnAffectedObj()

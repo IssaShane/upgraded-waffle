@@ -18,7 +18,8 @@ void Graphics::draw()
     Baddy.updateAltChange( Health.Level.returnAltStart(), Health.Level.returnAltEnd() );
     Baddy.UpdateItems( Item.returnType(), Item.returnTimesCollected() );
     Baddy.getInput();
-    Item.Update( Hero.returnPos(), Baddy.returnPos(), Health.Level.returnCollY() );
+    Item.Update( Hero.returnPos(), Baddy.returnPos(), Health.Level.returnCollY(), Health.Level.returnCurrentLevel() );
+    Item.UpdateAlt( Health.Level.returnAltStart(), Health.Level.returnAltEnd(), Health.Level.returnAltChange() );
 
     Health.draw( Screen );
     Item.draw( Screen, Health.IsInMenu );

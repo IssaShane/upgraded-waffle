@@ -35,8 +35,17 @@ void Item::deActivate()
     AffectedObj = 0;
 }
 
-void Item::Update( int CollY )
+void Item::Update( int CollY, int currentLevel )
 {
+    if ( currentLevel == 4 && IsAltChange == true )
+    {
+        CollY = 352;
+    }
+    else if ( currentLevel == 4 && IsAltChange == false )
+    {
+        CollY = 224;
+    }
+
     Pos.y += 5;
     if ( Pos.y > CollY - Clip.h )
     {
@@ -45,6 +54,18 @@ void Item::Update( int CollY )
     else if ( Pos.y < CollY - Clip.h )
     {
         Pos.y += 5;
+    }
+}
+
+void Item::UpdateAlt( int AltChangeStart, int AltChangeEnd, int AltChange )
+{
+    if ( Pos.x > AltChangeStart && Pos.x < AltChangeEnd )
+    {
+        IsAltChange = true;
+    }
+    else
+    {
+        IsAltChange = false;
     }
 }
 

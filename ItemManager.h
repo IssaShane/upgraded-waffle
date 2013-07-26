@@ -11,7 +11,8 @@ class ItemManager
     public:
         ItemManager();
         void draw( SDL_Surface *Screen, bool IsInMenu );
-        void Update( SDL_Rect PlayerPos, SDL_Rect EnemyPos, int CollY );
+        void Update( SDL_Rect PlayerPos, SDL_Rect EnemyPos, int CollY, int currentLevel );
+        void UpdateAlt( int AltChangeStart, int AltChangeEnd, int AltChange );
         int returnAffectedObj();
         int returnType();
         int returnTimesCollected();

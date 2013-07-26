@@ -14,7 +14,8 @@ class Item
         void draw( SDL_Surface *Screen );
         void Activate( int ObjName );
         void deActivate();
-        void Update( int CollY );
+        void Update( int CollY, int currentLevel );
+        void UpdateAlt( int AltChangeStart, int AltChangeEnd, int AltChange );
         void setAffectedObj( int newAffectedObj );
         void Collect();
         int returnAffectedObj();
@@ -29,6 +30,7 @@ class Item
         int type;
         int AffectedObj;
         int TimesCollected;
+        bool IsAltChange;
 };
 
 #endif
