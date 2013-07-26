@@ -171,15 +171,17 @@ void Player::updateAlt( int AltChangeStart, int AltChangeEnd, int AltChange )
     }
 }
 
-void Player::UpdateItems( int AffectedObj, int Type )
+void Player::UpdateItems( int AffectedObj, int Type, int TimesCollected )
 {
+    bool IsCollected = false;
     //If AffectedObj is the Player
-    if ( AffectedObj == 1 )
+    if ( AffectedObj == 1 && TimesCollected <= 1 )
     {
         //If the power up is a BoostUp
         if ( Type == 1 )
         {
             Boost = 5;
+            IsCollected = true;
         }
     }
 }

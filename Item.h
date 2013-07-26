@@ -16,9 +16,11 @@ class Item
         void deActivate();
         void Update( int CollY );
         void setAffectedObj( int newAffectedObj );
+        void Collect();
         int returnAffectedObj();
         int returnType();
         SDL_Rect returnPos();
+        int returnTimesCollected();
 
     private:
         SDL_Surface *Img;
@@ -26,6 +28,7 @@ class Item
         SDL_Rect Clip;
         int type;
         int AffectedObj;
+        int TimesCollected;
 };
 
 #endif

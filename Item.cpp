@@ -11,6 +11,7 @@ void Item::init( const char *filename, int x, int y, int clipx, int clipy, int w
     Clip.y = clipy;
     Clip.w = w;
     Clip.h = h;
+    TimesCollected = 0;
 }
 
 void Item::initType( int Type )
@@ -20,7 +21,8 @@ void Item::initType( int Type )
 
 void Item::draw( SDL_Surface *Screen )
 {
-    SDL_BlitSurface( Img, &Clip, Screen, &Pos );
+    if ( TimesCollected <= 1 )
+        SDL_BlitSurface( Img, &Clip, Screen, &Pos );
 }
 
 void Item::Activate( int ObjName )
@@ -51,6 +53,11 @@ void Item::setAffectedObj( int newAffectedObj )
     AffectedObj = newAffectedObj;
 }
 
+void Item::Collect()
+{
+    TimesCollected += 1;
+}
+
 int Item::returnAffectedObj()
 {
     return AffectedObj;
@@ -64,6 +71,11 @@ int Item::returnType()
 SDL_Rect Item::returnPos()
 {
     return Pos;
+}
+
+int Item::returnTimesCollected()
+{
+    return TimesCollected;
 }
 
 Item::~Item()

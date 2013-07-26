@@ -6,6 +6,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Hud.h"
+#include "ItemManager.h"
 
 class Graphics
 {
@@ -19,6 +20,7 @@ class Graphics
         Player Hero;
         Enemy Baddy;
         Hud Health;
+        ItemManager Item;
 };
 
 #endif

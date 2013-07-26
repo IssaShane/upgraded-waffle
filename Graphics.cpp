@@ -11,13 +11,16 @@ void Graphics::draw()
     Hero.checkHealth( Baddy.returnPos(), Baddy.returnAttacking(), Baddy.returnPower() );
     Hero.UpdateY( Health.Level.returnCollY(), Health.Level.returnCurrentLevel() );
     Hero.updateAlt( Health.Level.returnAltStart(), Health.Level.returnAltEnd(), Health.Level.returnAltChange() );
+    Hero.UpdateItems( Item.returnAffectedObj(), Item.returnType(), Item.returnTimesCollected() );
     Health.Update( Hero.returnHealth(), Baddy.returnHealth(), Hero.returnBoost(), Baddy.returnBoost(), Hero.returnSpecial(), Baddy.returnSpecial() );
     Baddy.checkHealth( Hero.returnPos(), Hero.returnAttacking(), Hero.returnPower() );
     Baddy.UpdateY( Health.Level.returnCollY(), Health.Level.returnCurrentLevel() );
     Baddy.updateAltChange( Health.Level.returnAltStart(), Health.Level.returnAltEnd() );
     Baddy.getInput();
+    Item.Update( Hero.returnPos(), Health.Level.returnCollY() );
 
     Health.draw( Screen );
+    Item.draw( Screen, Health.IsInMenu );
     Baddy.draw( Screen, Health.IsInMenu );
     Hero.draw( Screen, Health.IsInMenu );
     SDL_Flip( Screen );

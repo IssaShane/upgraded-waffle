@@ -17,7 +17,7 @@ class Player
         void setPosY( int newy );
         void UpdateY( int CollY, int currentLevel );
         void updateAlt( int AltChangeStart, int AltChangeEnd, int AltChange );
-        void UpdateItems( int AffectedObj, int Type );
+        void UpdateItems( int AffectedObj, int Type, int TimesCollected );
 
         //Return Functions
         int returnHealth();

@@ -14,6 +14,7 @@ class ItemManager
         void Update( SDL_Rect PlayerPos, int CollY );
         int returnAffectedObj();
         int returnType();
+        int returnTimesCollected();
 
     private:
         Item Item1;

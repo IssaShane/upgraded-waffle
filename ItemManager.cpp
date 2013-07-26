@@ -22,6 +22,7 @@ void ItemManager::Update( SDL_Rect PlayerPos, int CollY )
          {
              Item1.Activate( 1 );
              currentItem = 0;
+             Item1.Collect();
          }
          else
          {
@@ -40,4 +41,10 @@ int ItemManager::returnType()
 {
     if ( currentItem == 0 )
         return Item1.returnType();
+}
+
+int ItemManager::returnTimesCollected()
+{
+    if ( currentItem == 0 )
+        return Item1.returnTimesCollected();
 }
