@@ -15,6 +15,8 @@ class Menu : public Observer, public Subject {
     // Background Screens
     SDL_Surface *SelectMap;
     SDL_Surface *SelectPlayer;
+    SDL_Surface *Player1_Wins;
+    SDL_Surface *Player2_Wins;
     int currentScreen; // Menu Screens & Gameplay
 };
 

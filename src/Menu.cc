@@ -8,14 +8,20 @@ using namespace std;
 Menu::~Menu() {
   SDL_FreeSurface(SelectMap);
   SDL_FreeSurface(SelectPlayer);
+  SDL_FreeSurface(Player1_Wins);
+  SDL_FreeSurface(Player2_Wins);
   SelectMap = nullptr;
   SelectPlayer = nullptr;
+  Player1_Wins = nullptr;
+  Player2_Wins = nullptr;
 }
 
 Menu::Menu() {
   currentScreen = 0;
   SelectMap = IMG_Load("data/SelectMap.png");
   SelectPlayer = IMG_Load("data/SelectPlayer.png");
+  Player1_Wins = IMG_Load("data/Splash_Screens/Player1_Win.png");
+  Player2_Wins = IMG_Load("data/Splash_Screens/Player2_Win.png");
 }
 
 void Menu::notify(State &st) {
@@ -24,6 +30,10 @@ void Menu::notify(State &st) {
       SDL_BlitSurface(SelectPlayer,NULL,st.Screen,NULL);
     else if (currentScreen == 1)
       SDL_BlitSurface(SelectMap,NULL,st.Screen,NULL);
+    else if (currentScreen == 3)
+      SDL_BlitSurface(Player1_Wins,NULL,st.Screen,NULL);
+    else if (currentScreen == 4)
+      SDL_BlitSurface(Player2_Wins,NULL,st.Screen,NULL);
   }
   else if (st.type == StateType::key) {
     //cout << "Menu::Key" << endl;
@@ -34,6 +44,8 @@ void Menu::notify(State &st) {
         currentScreen = 1;
       }
     }
+    // we add currentScreen = 2 so that further keyboard input is ignored after
+    //   the menu is exited
     else if (currentScreen == 1) {
       int activeMap = 0;
       if (keys[SDL_SCANCODE_1]) {
@@ -78,5 +90,13 @@ void Menu::notify(State &st) {
       this->setState(newst);
       this->notifyObservers();
     }
+  }
+  else if (st.type == StateType::death) {
+    if (st.user == User::p1) currentScreen = 3;
+    else if (st.user == User::p2) currentScreen = 4;
+    State newst = this->getState();
+    newst.type = StateType::toggleview;
+    this->setState(newst);
+    this->notifyObservers();
   }
 }

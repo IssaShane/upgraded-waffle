@@ -74,39 +74,15 @@ void Hud::notify(State &st) {
     }
 }
 
-void Hud::draw( SDL_Surface *Screen )
-{
-
-    if ( bgType == 0 )
-    {
-        //Level.draw( Screen, IsInMenu );
-    }
-    else if ( bgType == 1 )
-    {
-        SDL_BlitSurface( SelectMap, NULL, Screen, NULL );
-    }
-    else if ( bgType == 1.2 )
-    {
-        SDL_BlitSurface( SelectPlayer, NULL, Screen, NULL );
-    }
-    else if ( bgType == 2 )
-    {
-        SDL_BlitSurface( Player1_Wins, NULL, Screen, NULL );
-    }
-    else if ( bgType == 3 )
-    {
-        SDL_BlitSurface( Player2_Wins, NULL, Screen, NULL );
-    }
-
-    if ( IsInMenu == false )
-    {
-        SDL_BlitSurface( PlayerHealthBar, NULL, Screen, &PlayerHealthBarPos );
-        SDL_BlitSurface( EnemyHealthBar, NULL, Screen, &EnemyHealthBarPos );
-        SDL_BlitSurface( PlayerBoostBar, NULL, Screen, &PlayerBoostBarPos );
-        SDL_BlitSurface( EnemyBoostBar, NULL, Screen, &EnemyBoostBarPos );
-        SDL_BlitSurface( PlayerSpecialBar, NULL, Screen, &PlayerSpecialBarPos );
-        SDL_BlitSurface( EnemySpecialBar, NULL, Screen, &EnemySpecialBarPos );
-    }
+void Hud::draw( SDL_Surface *Screen ) {
+   
+    SDL_BlitSurface( PlayerHealthBar, NULL, Screen, &PlayerHealthBarPos );
+    SDL_BlitSurface( EnemyHealthBar, NULL, Screen, &EnemyHealthBarPos );
+    SDL_BlitSurface( PlayerBoostBar, NULL, Screen, &PlayerBoostBarPos );
+    SDL_BlitSurface( EnemyBoostBar, NULL, Screen, &EnemyBoostBarPos );
+    SDL_BlitSurface( PlayerSpecialBar, NULL, Screen, &PlayerSpecialBarPos );
+    SDL_BlitSurface( EnemySpecialBar, NULL, Screen, &EnemySpecialBarPos );
+    
 }
 
 bool Hud::returnAIEngaged()

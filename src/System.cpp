@@ -38,10 +38,11 @@ System::System() {
     Hero->addObserver(Baddy);
     Baddy->addObserver(Hero);
     Hero->addObserver(Health);
+    Hero->addObserver(menu);
     Baddy->addObserver(Health);
+    Baddy->addObserver(menu);
     menu->addObserver(Level);
     menu->addObserver(Sprite);
-    
 
     // categorize objects
     Level->category = "Game";

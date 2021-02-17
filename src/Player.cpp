@@ -70,13 +70,14 @@ void Player::notify(State &st) {
     this->notifyObservers();
   }
   else if (st.type == StateType::passiveupdate) {
-      if (this->getHealth() <= 0) {
-          State newst = this->getState();
-          newst.type = StateType::death;
-          newst.user = User::p1;
-          this->setState(newst);
-          this->notifyObservers();
-      }
+    if (this->getHealth() <= 0) {
+        this->Health = 100;
+        State newst = this->getState();
+        newst.type = StateType::death;
+        newst.user = User::p1;
+        this->setState(newst);
+        this->notifyObservers();
+    }
   }
 
     

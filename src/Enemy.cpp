@@ -72,6 +72,7 @@ void Enemy::notify(State &st) {
     } 
     else if (st.type == StateType::passiveupdate) {
       if (this->getHealth() <= 0) {
+          this->Health = 100;
           State newst = this->getState();
           newst.type = StateType::death;
           newst.user = User::p2;
