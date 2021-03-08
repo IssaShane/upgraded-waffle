@@ -5,58 +5,63 @@
 using namespace std;
 
 LevelManager::LevelManager() {
-    Level1.init( "data/Map1.png", 386 );
-    Level2.init( "data/Map2.png", 386 );
-    Level3.init( "data/Map3.png", 224 );
-    Level4.init( "data/Map4.png", 224 );
+    levels.emplace_back(new Level{"data/Map1.png", 386});
+    levels.emplace_back(new Level{"data/Map2.png", 386});
+    levels.emplace_back(new Level{"data/Map3.png", 224});
+    levels.emplace_back(new Level{"data/Map4.png", 224});
     activeMap = 1;
 }
 
+LevelManager::~LevelManager() {
+    for (Level * l : levels) delete l;
+}
+
 void LevelManager::draw( SDL_Surface *Screen, bool IsInMenu ) {
-    cout << "activeMap: " << activeMap << endl;
-    if ( activeMap == 1 && IsInMenu == false )
-    {
-        Level1.draw( Screen );
-    }
-    if ( activeMap == 2 && IsInMenu == false )
-    {
-        Level2.draw( Screen );
-    }
-    if ( activeMap == 3 && IsInMenu == false )
-    {
-        Level3.draw( Screen );
-    }
-    if ( activeMap == 4 && IsInMenu == false )
-    {
-        Level4.draw( Screen );
-    }
+    if (IsInMenu == false) levels[activeMap-1]->draw(Screen);
 }
 
 void LevelManager::notify(State &st) {
     if (st.type == StateType::setlevel) activeMap = st.stat;
     else if (st.type == StateType::draw) draw(st.Screen,false);
+    else if (st.type == StateType::iscoll) {
+        //cout << "Level::iscoll" << endl;
+        // Collision with Wall or Floor
+        if (levels[activeMap-1]->IsColliding(st.pos)) {
+            /*cout << "collision: ";
+            if (st.user == User::p1) cout << "p1" << endl;
+            else if (st.user == User::p2) cout << "p2" << endl; */
+            // Collision with Floor
+            if (levels[activeMap-1]->findFloor(st.pos) < st.pos.y + st.pos.h) {
+                //cout << "floor" << endl;
+                State newst = this->getState();
+                newst.type = StateType::floorcoll;
+                newst.user = st.user;
+                newst.view = View::Game;
+                newst.pos.y = levels[activeMap-1]->findFloor(st.pos);
+                this->setState(newst);
+                this->notifyObservers();
+            }
+            // Collision with wall
+            else {
+                cout << "wall" << endl;
+                State newst = this->getState();
+                newst.type = StateType::yescoll;
+                newst.user = st.user;
+                newst.view = View::Game;
+                this->setState(newst);
+                this->notifyObservers();
+            }
+            
+        }
+    }
 }
 
-int LevelManager::returnCollY()
-{
-    if ( activeMap == 1 )
-        return Level1.Colly;
-    if ( activeMap == 2 )
-        return Level2.Colly;
-    if ( activeMap == 3 )
-        return Level3.Colly;
-    if ( activeMap == 4 )
-    {
-        return Level4.Colly;
-    }
-    else
-    {
-        return 0;
-    }
+int LevelManager::returnCollY() {
+    if (activeMap >= 1 && activeMap <= levels.size())
+        return levels[activeMap-1]->Colly;
 }
 
-int LevelManager::returnAltChange()
-{
+int LevelManager::returnAltChange() {
     if ( activeMap == 4 )
     {
         return 96;

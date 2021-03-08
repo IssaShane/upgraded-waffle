@@ -12,16 +12,14 @@
 
 class State;
 
-enum View {
-    MenuInterface, Game
-};
+enum View;
 
 class Graphics : public Subject, public Observer {
     public:
         Graphics();
         ~Graphics();
         //void draw(SDL_Event&);
-        void update();
+        void update(View);
 
         virtual void notify(State&) override;
 

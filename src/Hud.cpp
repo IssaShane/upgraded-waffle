@@ -16,13 +16,6 @@ Hud::Hud()
     EnemyHealthBarPos.x = 0;
     EnemyHealthBarPos.y = 0;
 
-    //Background Screens
-    SelectMap = IMG_Load("data/SelectMap.png");
-    Player1_Wins = IMG_Load("data/Splash_Screens/Player1_Win.png");
-    Player2_Wins = IMG_Load("data/Splash_Screens/Player2_Win.png");
-    bgType = 1;
-    IsInMenu = true;
-
     //Player Boost
     PlayerBoostBar = IMG_Load("data/SpecialBar.png");
     PlayerBoostBarPos.x = 640;
@@ -42,9 +35,6 @@ Hud::Hud()
     EnemySpecialBar = IMG_Load("data/SpecialBar2.png");
     EnemySpecialBarPos.x = 0;
     EnemySpecialBarPos.y = 56;
-
-    IsInMenu = false;
-    bgType = 0;
 }
 
 void Hud::notify(State &st) {
@@ -67,10 +57,6 @@ void Hud::notify(State &st) {
             PlayerSpecialBarPos.x = 640 - ( st.stat * 8 );
         else if (st.user == User::p2)
             EnemySpecialBarPos.x = -16 + ( st.stat * 8 );
-    }
-    else if (st.type == StateType::death) {
-        if (st.user == User::p1) bgType = 3;
-        else if (st.user == User::p2) bgType = 2;
     }
 }
 

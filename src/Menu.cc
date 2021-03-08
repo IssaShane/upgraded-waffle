@@ -41,6 +41,16 @@ void Menu::notify(State &st) {
     if (currentScreen == 0) {
       if (keys[SDL_SCANCODE_1]) {
         cout << "one player" << endl;
+        State newst = this->getState();
+        newst.type = StateType::setaitrue;
+        newst.view = View::Game; // So that the player receives it
+        newst.user = User::p2;
+        this->setState(newst);
+        this->notifyObservers();
+        currentScreen = 1;
+      }
+      else if (keys[SDL_SCANCODE_2]) {
+        cout << "two player" << endl;
         currentScreen = 1;
       }
     }
@@ -89,6 +99,14 @@ void Menu::notify(State &st) {
       newst.stat = activeMap;
       this->setState(newst);
       this->notifyObservers();
+    }
+    else if (currentScreen == 2) {
+      if (keys[SDL_SCANCODE_ESCAPE]) {
+        State newst;
+        newst.type = StateType::toggleview;
+        this->setState(newst);
+        this->notifyObservers();
+      }
     }
   }
   else if (st.type == StateType::death) {

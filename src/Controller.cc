@@ -8,21 +8,29 @@ Controller::Controller() {
   quit = false;
 }
 
-void Controller::update() {
+void Controller::update(View view) {
   //cout << "contr::update" << endl;
   SDL_PollEvent(&e);
   if (e.type == SDL_QUIT) quit = true;
   else if (e.type == SDL_KEYDOWN) {
     //cout << "contr::update keydown" << endl;
-    
-    this->setState(State{StateType::key});
+    State newst;
+    newst.type = StateType::key;
+    newst.view = view;
+    this->setState(newst);
     this->notifyObservers();
   }
   else {
-    this->setState(State{StateType::noaction});
+    State newst;
+    newst.type = StateType::noaction;
+    newst.view = view;
+    this->setState(newst);
     this->notifyObservers();
   }
-  this->setState(State{StateType::passiveupdate});
+  State newst;
+  newst.type = StateType::passiveupdate;
+  newst.view = view;
+  this->setState(newst);
   this->notifyObservers();
 }
 

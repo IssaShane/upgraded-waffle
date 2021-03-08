@@ -7,11 +7,21 @@
 enum StateType {
   key, draw, noaction, passiveupdate, 
   attack, health, boost, special, death,
-  setlevel, setplayer, toggleview
+  setlevel, setplayer, toggleview, iscoll, 
+  yescoll, nocoll, floorcoll, aicommand, aiupdate,
+  setaitrue, setaifalse
 };
 
 enum User {
   p1,p2
+};
+
+enum AICommand {
+  move, AI_attack, shield
+};
+
+enum View {
+    MenuInterface, Game
 };
 
 class State {
@@ -27,6 +37,10 @@ class State {
     // stat (i.e. health, energy)
     User user;
     int stat;
+    // Command for Computer Players
+    AICommand command;
+    // Current View
+    View view;
 };
 
 #endif

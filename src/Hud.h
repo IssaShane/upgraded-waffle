@@ -31,13 +31,6 @@ class Hud : public Observer
         SDL_Surface *EnemyHealthBar;
         SDL_Rect EnemyHealthBarPos;
 
-        //Background Screens
-        SDL_Surface *SelectMap;
-        SDL_Surface *SelectPlayer;
-        SDL_Surface *Player1_Wins;
-        SDL_Surface *Player2_Wins;
-        double bgType;
-        Uint8 *key;
         bool AIEngaged;
 
         //Player Boost

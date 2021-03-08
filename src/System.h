@@ -3,6 +3,8 @@
 
 #include <SDL.h>
 #include <SDL_image.h>
+#include "Observer.h"
+#include "State.h"
 
 class Graphics;
 class Controller;
@@ -12,12 +14,14 @@ class Enemy;
 class Player;
 class LevelManager;
 class Menu;
+class ComputerPlayer;
 
-class System {
+class System : public Observer {
     public:
         System();
         ~System();
         void Run();
+        virtual void notify(State&);
 
     private:
         bool quit;
@@ -29,9 +33,11 @@ class System {
         Player *Hero;
         LevelManager *Level;
         Menu *menu;
+        ComputerPlayer *comp;
         int frameStart;
         int frameRate;
         int frameDuration;
+        View view;
 };
 
 #endif

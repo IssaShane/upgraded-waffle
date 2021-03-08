@@ -2,6 +2,7 @@
 #include "Graphics.h"
 #include "Controller.h"
 #include "Menu.h"
+#include "ComputerPlayer.h"
 #include <iostream>
 
 using namespace std;
@@ -22,6 +23,7 @@ System::System() {
     Hero = new Player{};
     Level = new LevelManager{};
     menu = new Menu{};
+    comp = new ComputerPlayer{};
 
     contr->addObserver(Hero);
     contr->addObserver(Baddy);
@@ -39,10 +41,21 @@ System::System() {
     Baddy->addObserver(Hero);
     Hero->addObserver(Health);
     Hero->addObserver(menu);
+    Hero->addObserver(Level);
+    Baddy->addObserver(Level);
+    Level->addObserver(Hero);
+    Level->addObserver(Baddy);
     Baddy->addObserver(Health);
     Baddy->addObserver(menu);
     menu->addObserver(Level);
-    menu->addObserver(Sprite);
+    menu->addObserver(this);
+    menu->addObserver(Hero);
+    menu->addObserver(Baddy);
+    Baddy->addObserver(comp);
+    Hero->addObserver(comp);
+    comp->addObserver(Baddy);
+    comp->addObserver(Hero);
+
 
     // categorize objects
     Level->category = "Game";
@@ -52,6 +65,15 @@ System::System() {
     Health->category = "Game";
     
     menu->category = "Menu";
+
+    view = View::MenuInterface;
+}
+
+void System::notify(State &st) {
+    if (st.type == StateType::toggleview) {
+        if (view == View::MenuInterface) view = View::Game;
+        else if (view == View::Game) view = View::MenuInterface;
+    }
 }
 
 void System::Run()
@@ -59,8 +81,8 @@ void System::Run()
     while ( contr->IsQuit() == false )
     {
         frameStart = SDL_GetTicks();
-        contr->update();
-        Sprite->update();
+        contr->update(view);
+        Sprite->update(view);
         
         //cout << "drawn sprite" << endl;
         frameDuration = SDL_GetTicks() - frameStart;
@@ -77,5 +99,7 @@ System::~System()
     delete Item;
     delete Baddy;
     delete Hero;
+    delete Level;
+    delete menu;
     SDL_Quit();
 }

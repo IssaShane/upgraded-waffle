@@ -41,16 +41,17 @@ void Graphics::draw(SDL_Event &e) {
 
 void Graphics::notify(State& st) {
     if (st.type == StateType::death) view = View::MenuInterface;
-    else if (st.type == StateType::toggleview) {
+    /*else if (st.type == StateType::toggleview) {
         if (view == View::MenuInterface) view = View::Game;
         else if (view == View::Game) view = View::MenuInterface;
-    }
+    }*/
 }
 
-void Graphics::update() {
+void Graphics::update(View view) {
     State newst = this->getState();
     newst.type = StateType::draw;
     newst.Screen = Screen;
+    newst.view = view;
     this->setState(newst);
     if (view == View::MenuInterface) this->notifyObserversOfCategory("Menu");
     else if (view == View::Game) this->notifyObserversOfCategory("Game");

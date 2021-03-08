@@ -3,7 +3,10 @@
 
 using namespace std;
 
-Fighter::Fighter(const char* filename, SDL_Rect pos, SDL_Rect clip) : GameObject{filename,pos,clip}{}
+Fighter::Fighter(const char* filename, SDL_Rect pos, SDL_Rect clip) : GameObject{filename,pos,clip} {
+  gravity = 3;
+  IsComputer = false;
+}
 
 void Fighter::checkHealth( SDL_Rect POS, bool IsAttacking, int power ) {
   if ( IsAttacking == true && IsEnabledShield == false )
@@ -50,42 +53,94 @@ void Fighter::notify(State &st) {
     //Wrap player to other side of screen
     if ( Pos.x < 0 ) Pos.x = 640;
     if ( Pos.x > 640 ) Pos.x = 0;
+
+    // make the player fall with gravity
+    if (Pos.x > 0 && Pos.x + Pos.w < 640) moveVertical(gravity);
+
+    // Query the level for collisions with the walls/floors
+    State newst = this->getState();
+    newst.type = StateType::iscoll;
+    newst.pos = this->getPos();
+    newst.view = View::Game;
+    newst.user = this->user;
+    this->setState(newst);
+    this->notifyObservers();
+
+    // Update the AI
+    newst.type = StateType::aiupdate;
+    newst.pos = this->getPos();
+    newst.user = this->user;
+    newst.view = View::Game;
+    this->setState(newst);
+    this->notifyObservers();
+  }
+  // Collision with a wall
+  else if (st.type == StateType::yescoll && st.user == this->user) {
+    if (this->dir == 2) moveHorizontal(this->Speed);
+    else if (this->dir == 3) moveHorizontal((-1)*Speed);
+  }
+  // Collision with the floor
+  else if (st.type == StateType::floorcoll && st.user == this->user) {
+    /*cout << "Fighter::floorcoll: ";
+    if (st.user == User::p1) cout << "p1";
+    else if (st.user == User::p2) cout << "p2";
+    cout << endl;*/
+    //moveVertical((-1)*gravity);
+    Pos.y = st.pos.y - Pos.h;
+  }
+  // Receive instructions from AI
+  else if (this->IsComputer && st.type == StateType::aicommand 
+    && this->user == st.user) {
+      cout << "receiving AICOmmand" << endl;
+    if (st.command == AICommand::move) {
+      if (st.pos.x > this->getPos().x) {
+        Pos.x += Speed;
+        dir = 3;
+        Clip.y = 0;
+        if (Attacking == false) frame += 1;
+      }
+      else if (st.pos.x < this->getPos().x) {
+        Pos.x -= Speed;
+        dir = 2;
+        Clip.y = 48;
+        if (Attacking == false) frame += 1;
+      }
+    }
+    else if (st.command == AICommand::AI_attack) {
+      Power = 5;
+      Attacking = true;
+      Clip.x = 64;
+      frame = 2;
+      Special -= 1.5;
+      this->attack();
+    }
+    else if (st.command == AICommand::shield) {
+      IsEnabledShield = true;
+    }
+  }
+  // Receive Instructions on Whether or not AI should be on
+  else if (st.type == StateType::setaitrue && st.user == this->user) {
+    IsComputer = true;
+    Speed = 1;
+  }
+  else if (st.type == StateType::setaifalse && st.user == this->user) {
+    IsComputer = false;
   }
 }
+
+/*void Fighter::move(int x, int y) {
+  SDL_Rect newpos = this->getPos();
+  newpos.x += x;
+  newpos.y += y;
+  State newst = this->getState();
+  newst.type = StateType::iscoll;
+  newst.pos = newpos;
+  this->setState(newst);
+  this->notifyObservers();
+}*/
 
 void Fighter::setPosY(int newy) {
   Pos.y = newy;
-}
-
-void Fighter::UpdateY( int CollY, int currentLevel ) {
-  if ( currentLevel == 4 && IsAltChange == true )
-  {
-    CollY = 352;
-  }
-  else if ( currentLevel == 4 && IsAltChange == false )
-  {
-    CollY = 224;
-  }
-
-  if ( Pos.y > CollY - 48 )
-  {
-    Pos.y -= 15;
-  }
-  if ( Pos.y < CollY - 48 )
-  {
-    Pos.y += 15;
-  }
-}
-
-void Fighter::updateAlt( int AltChangeStart, int AltChangeEnd, int AltChange ) {
-  if ( Pos.x > AltChangeStart && Pos.x < AltChangeEnd )
-  {
-    IsAltChange = true;
-  }
-  else
-  {
-    IsAltChange = false;
-  }
 }
 
 void Fighter::UpdateItems( int Type, int TimesCollected ) {

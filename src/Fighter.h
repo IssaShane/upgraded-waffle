@@ -12,10 +12,9 @@ class Fighter : public GameObject, public Observer, public Subject {
     void attack();
 
     virtual void notify(State&) override;
+    //virtual void move(int,int) override;
 
     void setPosY(int newy);
-    void UpdateY(int CollY, int currentLevel);
-    void updateAlt(int AltChangeStart, int AltChangeEnd, int AltChange);
     void UpdateItems(int Type, int TimesCollected);
 
     //getters
@@ -34,8 +33,11 @@ class Fighter : public GameObject, public Observer, public Subject {
     int Altitude;
     bool IsAltChange;
     int Speed;
+    int gravity;
     double Special;
     bool IsEnabledShield;
+    User user;
+    bool IsComputer;
 };
 
 #endif

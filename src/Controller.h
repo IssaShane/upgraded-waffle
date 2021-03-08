@@ -4,10 +4,12 @@
 #include <SDL.h>
 #include "Subject.h"
 
+enum View;
+
 class Controller : public Subject {
   public:
     Controller();
-    void update();
+    void update(View);
     bool IsQuit() const;
 
   private:

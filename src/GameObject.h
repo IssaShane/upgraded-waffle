@@ -26,7 +26,7 @@ class GameObject {
     bool IsVisible() const;
 
     // setters
-    void move(int, int);
+    virtual void move(int, int);
     void moveVertical(int);
     void moveHorizontal(int);
     void setPos(const SDL_Rect);
