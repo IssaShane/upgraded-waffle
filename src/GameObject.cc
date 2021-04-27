@@ -26,7 +26,7 @@ GameObject::GameObject(const char* filename, const SDL_Rect Pos) {
   visible = true;
 
   this->Pos = Pos; // copy by value
-  this->Clip = SDL_Rect{0,0,32,32};
+  this->Clip = SDL_Rect{0,0,Pos.w,Pos.h};
   this->Coll = this->Pos;
 }
 

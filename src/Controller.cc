@@ -16,8 +16,14 @@ void Controller::update(View view) {
     //cout << "contr::update keydown" << endl;
     State newst;
     newst.type = StateType::key;
+    newst.keycode = e.key.keysym.sym;
     newst.view = view;
     this->setState(newst);
+    this->notifyObservers();
+  }
+  else if (e.type == SDL_KEYUP) {
+    cout << "keyup" << endl;
+    this->setState(State{StateType::keyup});
     this->notifyObservers();
   }
   else {

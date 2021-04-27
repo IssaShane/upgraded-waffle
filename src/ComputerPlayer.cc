@@ -23,7 +23,7 @@ void ComputerPlayer::notify(State &st) {
     if (IsCollision(st.pos,this->pos)) newst.command = AICommand::AI_attack;
     else newst.command = AICommand::move;
     this->setState(newst);
-    cout << "sending AICommand" << endl;
+    //cout << "sending AICommand" << endl;
     this->notifyObservers();
   }
 }

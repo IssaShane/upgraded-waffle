@@ -41,16 +41,22 @@ void Player::notify(State &st) {
                 this->attack();
             }
             if (keys[SDL_SCANCODE_RIGHT]) {
+                cout << "player right" << endl;
                 Pos.x += Speed;
                 dir = 3;
                 Clip.y = 48;
-                if (Attacking == false) frame += 1;
+                if (Attacking == false) {
+                    cout << "player right frame" << endl;
+                    frame += 1;}
             }
             else if (keys[SDL_SCANCODE_LEFT]) {
+                cout << "player left" << endl;
                 Pos.x -= Speed;
                 dir = 2;
                 Clip.y = 0;
-                if (Attacking == false) frame += 1;
+                if (Attacking == false) {
+                    cout << "player left frame" << endl;
+                    frame += 1;}
             }
             else if (keys[SDL_SCANCODE_UP]) {
                 Speed = 10;

@@ -5,7 +5,7 @@
 #include <vector>
 
 enum StateType {
-  key, draw, noaction, passiveupdate, 
+  key, keyup, draw, noaction, passiveupdate, 
   attack, health, boost, special, death,
   setlevel, setplayer, toggleview, iscoll, 
   yescoll, nocoll, floorcoll, aicommand, aiupdate,
@@ -28,7 +28,7 @@ class State {
   public:
     // key
     StateType type;
-    std::vector<bool> keycode;
+    SDL_Keycode keycode;
     // draw
     SDL_Surface *Screen;
     // attack

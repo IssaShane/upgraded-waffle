@@ -4,6 +4,7 @@
 #include <SDL.h>
 #include "Observer.h"
 #include "Subject.h"
+#include "GameObject.h"
 
 class Menu : public Observer, public Subject {
   public:
@@ -17,7 +18,10 @@ class Menu : public Observer, public Subject {
     SDL_Surface *SelectPlayer;
     SDL_Surface *Player1_Wins;
     SDL_Surface *Player2_Wins;
+    SDL_Surface *ControlScreen;
+    GameObject *cursor;
     int currentScreen; // Menu Screens & Gameplay
+    bool keydepressed;
 };
 
 #endif

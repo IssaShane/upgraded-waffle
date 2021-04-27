@@ -91,7 +91,7 @@ void Fighter::notify(State &st) {
   // Receive instructions from AI
   else if (this->IsComputer && st.type == StateType::aicommand 
     && this->user == st.user) {
-      cout << "receiving AICOmmand" << endl;
+      //cout << "receiving AICOmmand" << endl;
     if (st.command == AICommand::move) {
       if (st.pos.x > this->getPos().x) {
         Pos.x += Speed;
@@ -107,6 +107,9 @@ void Fighter::notify(State &st) {
       }
     }
     else if (st.command == AICommand::AI_attack) {
+      cout << "AI Attack: ";
+      if (st.user == User::p1) cout << "p1" << endl;
+      else if (st.user == User::p2) cout << "p2" << endl;
       Power = 5;
       Attacking = true;
       Clip.x = 64;
