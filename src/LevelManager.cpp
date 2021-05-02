@@ -13,7 +13,7 @@ LevelManager::LevelManager() {
 }
 
 LevelManager::~LevelManager() {
-    for (Level * l : levels) delete l;
+    for (int i = 0; i < levels.size(); i++) delete levels[i];
 }
 
 void LevelManager::draw( SDL_Surface *Screen, bool IsInMenu ) {

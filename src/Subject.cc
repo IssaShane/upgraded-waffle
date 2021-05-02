@@ -6,12 +6,12 @@ void Subject::addObserver(Observer *ob) {
 }
 
 void Subject::notifyObservers() {
-  for (Observer *ob : observers) ob->notify(state);
+  for (int i = 0; i < observers.size(); i++) observers[i]->notify(state);
 }
 
 void Subject::notifyObserversOfCategory(std::string type) {
-  for (Observer *ob : observers) 
-    if (ob->category == type) ob->notify(state);
+  for (int i = 0; i < observers.size(); i++) 
+    if (observers[i]->category == type) observers[i]->notify(state);
 }
 
 void Subject::setState(State st) {

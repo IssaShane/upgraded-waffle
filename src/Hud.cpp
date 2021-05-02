@@ -4,8 +4,7 @@
 
 using namespace std;
 
-Hud::Hud()
-{
+Hud::Hud() {
     //Player
     PlayerHealthBar = IMG_Load("data/PlayerHealthBar.png");
     PlayerHealthBarPos.x = 340;
@@ -38,13 +37,17 @@ Hud::Hud()
 }
 
 void Hud::notify(State &st) {
+    //cout << "enemy bar x: " << EnemyHealthBarPos.x << endl;
     if (st.type == StateType::draw) this->draw(st.Screen);
     else if (st.type == StateType::health) {
         //cout << "HUD::HEALTH" << endl;
         if (st.user == User::p1) 
             PlayerHealthBarPos.x = 640 - ( st.stat * 3 );
-        else if (st.user == User::p2)
+        else if (st.user == User::p2) {
+            cout << "enemy health: " << st.stat << endl;
             EnemyHealthBarPos.x = -300 + ( st.stat * 3 );
+            //cout << "enemy  bar x: " << EnemyHealthBarPos.x << endl;
+        }
     }
     else if (st.type == StateType::boost) {
         if (st.user == User::p1)
@@ -61,7 +64,8 @@ void Hud::notify(State &st) {
 }
 
 void Hud::draw( SDL_Surface *Screen ) {
-   
+    //cout << "Enemy bar pos.x : " << EnemyHealthBarPos.x << endl;
+    //cout << "Player bar pos.x :" << PlayerHealthBarPos.x << endl;
     SDL_BlitSurface( PlayerHealthBar, NULL, Screen, &PlayerHealthBarPos );
     SDL_BlitSurface( EnemyHealthBar, NULL, Screen, &EnemyHealthBarPos );
     SDL_BlitSurface( PlayerBoostBar, NULL, Screen, &PlayerBoostBarPos );
@@ -80,6 +84,8 @@ Hud::~Hud()
 {
     SDL_FreeSurface( PlayerHealthBar );
     SDL_FreeSurface( PlayerBoostBar );
+    SDL_FreeSurface( PlayerSpecialBar );
     SDL_FreeSurface( EnemyHealthBar );
     SDL_FreeSurface( EnemyBoostBar );
+    SDL_FreeSurface( EnemySpecialBar );
 }

@@ -21,7 +21,7 @@ class Graphics : public Subject, public Observer {
         //void draw(SDL_Event&);
         void update(View);
 
-        virtual void notify(State&) override;
+        virtual void notify(State&);
 
     private:
         SDL_Surface *Screen;

@@ -15,7 +15,7 @@ class LevelManager : public Observer, public Subject {
         ~LevelManager();
         void draw( SDL_Surface *Screen, bool IsInMenu );
 
-        virtual void notify(State&) override;
+        virtual void notify(State&);
 
         int returnCollY();
         int returnAltChange();

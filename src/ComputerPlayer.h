@@ -15,7 +15,7 @@ something more useful or advanced, I have the infrastructure to do that.
 class ComputerPlayer : public Observer, public Subject {
   public:
     ComputerPlayer();
-    virtual void notify(State&) override;
+    virtual void notify(State&);
   private:
     SDL_Rect pos;
     User user;

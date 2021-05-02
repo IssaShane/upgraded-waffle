@@ -11,7 +11,7 @@ class Fighter : public GameObject, public Observer, public Subject {
     void checkHealth(SDL_Rect POS, bool IsAttacking, int power);
     void attack();
 
-    virtual void notify(State&) override;
+    virtual void notify(State&);
     //virtual void move(int,int) override;
 
     void setPosY(int newy);

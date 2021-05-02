@@ -31,8 +31,8 @@ Level::Level(const char *filename, int CollY) {
     }
     collfile.close();
     cout << "floor: " << endl;
-    for (SDL_Rect r : this->floor) {
-        cout << r << endl;
+    for (int i = 0; i < this->floor.size(); i++) {
+        cout << floor[i] << endl;
     }
 }
 
@@ -41,7 +41,8 @@ Level::Level(const char *filename, int CollY) {
 Level::Level(const Level &other) {
     this->Img = other.Img;
     this->Colly = other.Colly;
-    for (SDL_Rect r : other.floor) this->floor.emplace_back(r);
+    for (int i = 0; i < other.floor.size(); i++) 
+        this->floor.emplace_back(other.floor[i]);
 }
 
 void Level::draw( SDL_Surface *Screen ) {
@@ -49,15 +50,15 @@ void Level::draw( SDL_Surface *Screen ) {
 }
 
 bool Level::IsColliding(const SDL_Rect &rect) const {
-    for (SDL_Rect block : this->floor) {
-        if (IsCollision(block,rect)) return true;
+    for (int i = 0; i < floor.size(); i++) {
+        if (IsCollision(floor[i],rect)) return true;
     }
     return false;
 }
 
 int Level::findFloor(const SDL_Rect &pos) const {
-    for (SDL_Rect block : this->floor) {
-        if (block.x < pos.x && block.x + block.w > pos.x) return block.y;
+    for (int i = 0; i < floor.size(); i++) {
+        if (floor[i].x < pos.x && floor[i].x + floor[i].w > pos.x) return floor[i].y;
     }
     return 0;
 }
@@ -65,5 +66,5 @@ int Level::findFloor(const SDL_Rect &pos) const {
 Level::~Level()
 {
     SDL_FreeSurface( Img );
-    Img = nullptr;
+    Img = NULL;
 }

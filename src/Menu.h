@@ -10,7 +10,7 @@ class Menu : public Observer, public Subject {
   public:
     Menu();
     ~Menu();
-    virtual void notify(State&) override;
+    virtual void notify(State&);
 
   private:
     // Background Screens

@@ -9,7 +9,7 @@
 class Enemy : public Fighter {
     public:
         Enemy();
-        virtual void notify(State&) override;
+        virtual void notify(State&);
 };
 
 #endif

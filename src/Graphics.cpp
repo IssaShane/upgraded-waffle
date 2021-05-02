@@ -9,8 +9,8 @@ Graphics::Graphics()
 {
     win = SDL_CreateWindow("XFighter",SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480, SDL_WINDOW_SHOWN);
     Screen = SDL_GetWindowSurface(win);
-    if (win == nullptr) cout << "could not load window" << endl;
-    if (Screen == nullptr) cout << "Screen could not be initialized" << endl;
+    if (win == NULL) cout << "could not load window" << endl;
+    if (Screen == NULL) cout << "Screen could not be initialized" << endl;
     cout << "window initialized" << endl;
     view = View::MenuInterface;
 }

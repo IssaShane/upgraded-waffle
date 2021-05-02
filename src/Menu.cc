@@ -12,12 +12,12 @@ Menu::~Menu() {
   SDL_FreeSurface(Player2_Wins);
   SDL_FreeSurface(ControlScreen);
   delete cursor;
-  SelectMap = nullptr;
-  SelectPlayer = nullptr;
-  Player1_Wins = nullptr;
-  Player2_Wins = nullptr;
-  cursor = nullptr;
-  ControlScreen = nullptr;
+  SelectMap = NULL;
+  SelectPlayer = NULL;
+  Player1_Wins = NULL;
+  Player2_Wins = NULL;
+  cursor = NULL;
+  ControlScreen = NULL;
 }
 
 Menu::Menu() {
@@ -52,7 +52,7 @@ void Menu::notify(State &st) {
   }
   else if (st.type == StateType::key) {
     //cout << "Menu::Key" << endl;
-    const Uint8 *keys = SDL_GetKeyboardState(nullptr);
+    const Uint8 *keys = SDL_GetKeyboardState(NULL);
     if (keydepressed == false) { 
       if (st.keycode == SDLK_DOWN) {
         cursor->moveVertical(64);
@@ -154,8 +154,8 @@ void Menu::notify(State &st) {
     }
   }
   else if (st.type == StateType::death) {
-    if (st.user == User::p1) currentScreen = 3;
-    else if (st.user == User::p2) currentScreen = 4;
+    if (st.user == User::p1) currentScreen = 4;
+    else if (st.user == User::p2) currentScreen = 3;
     State newst = this->getState();
     newst.type = StateType::toggleview;
     this->setState(newst);

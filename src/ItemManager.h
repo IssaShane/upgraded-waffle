@@ -13,7 +13,7 @@ class ItemManager : public Observer
         ItemManager();
         ~ItemManager();
         void draw( SDL_Surface *Screen, bool IsInMenu );
-        virtual void notify(State&) override;
+        virtual void notify(State&);
         void Update( SDL_Rect PlayerPos, SDL_Rect EnemyPos, int CollY, int currentLevel );
         void UpdateAlt( int AltChangeStart, int AltChangeEnd, int AltChange );
         int returnAffectedObj();

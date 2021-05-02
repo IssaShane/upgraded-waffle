@@ -23,7 +23,7 @@ void Enemy::notify(State &st) {
         //cout << "Player health: " << this->getHealth() << endl;
         Fighter::notify(st);
         if (st.type == StateType::key && IsComputer == false) {
-            const Uint8 *keys = SDL_GetKeyboardState(nullptr);
+            const Uint8 *keys = SDL_GetKeyboardState(NULL);
             if (keys[SDL_SCANCODE_D]) {
                 Pos.x += Speed;
                 dir = 3;

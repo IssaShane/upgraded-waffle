@@ -12,7 +12,7 @@ class Hud : public Observer
         Hud();
         ~Hud();
         void draw( SDL_Surface *Screen );
-        virtual void notify(State&) override;
+        virtual void notify(State&);
 
         //return funcitons
         bool returnAIEngaged();

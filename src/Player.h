@@ -11,7 +11,7 @@ class Player : public Fighter
     public:
         //Action Functions
         Player();
-        virtual void notify(State&) override;
+        virtual void notify(State&);
 };
 
 #endif

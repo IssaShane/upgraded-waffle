@@ -22,7 +22,7 @@ void Player::notify(State &st) {
         Fighter::notify(st);
         
         if (st.type == StateType::key && IsComputer == false) {
-            const Uint8 *keys = SDL_GetKeyboardState(nullptr);
+            const Uint8 *keys = SDL_GetKeyboardState(NULL);
             if (keys[SDL_SCANCODE_DOWN]) {
                 Power = 1;
                 Attacking = true;
