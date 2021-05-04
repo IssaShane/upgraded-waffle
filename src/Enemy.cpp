@@ -38,15 +38,14 @@ void Enemy::notify(State &st) {
             }
             else if (keys[SDL_SCANCODE_S]) {
                 Power = 1;
-                Attacking = true;
                 Clip.x = 64;
                 frame = 2;
                 // alert the opponent of an attack
                 this->attack();
+                //cout << "enemy is attacking: " << Attacking << endl;
             }
             else if (keys[SDL_SCANCODE_Q]) {
                 Power = 5;
-                Attacking = true;
                 Clip.x = 64;
                 frame = 2;
                 Special -= 1.5;
@@ -73,14 +72,14 @@ void Enemy::notify(State &st) {
             this->notifyObservers();
         } 
         else if (st.type == StateType::passiveupdate) {
-        if (this->getHealth() <= 0) {
-            this->Health = 100;
-            State newst = this->getState();
-            newst.type = StateType::death;
-            newst.user = User::p2;
-            this->setState(newst);
-            this->notifyObservers();
+            if (this->getHealth() <= 0) {
+                this->Health = 100;
+                State newst = this->getState();
+                newst.type = StateType::death;
+                newst.user = User::p2;
+                this->setState(newst);
+                this->notifyObservers();
+            }
         }
-    }
     }
 }

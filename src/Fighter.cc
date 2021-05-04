@@ -22,12 +22,15 @@ void Fighter::checkHealth( SDL_Rect POS, bool IsAttacking, int power ) {
 }
 
 void Fighter::attack() {
-  State st = this->getState();
-  st.type = StateType::attack;
-  st.pos = this->getPos();
-  st.power = this->getPower();
-  this->setState(st);
-  this->notifyObservers();
+  if (!Attacking) {
+    Attacking = true;
+    State st = this->getState();
+    st.type = StateType::attack;
+    st.pos = this->getPos();
+    st.power = this->getPower();
+    this->setState(st);
+    this->notifyObservers();
+  }
 }
 
 void Fighter::notify(State &st) {
@@ -36,7 +39,6 @@ void Fighter::notify(State &st) {
     this->draw(st.Screen);
   }
   else if (st.type == StateType::noaction) {
-    Attacking = false;
     Clip.x = 0;
     Speed = 5;
     IsEnabledShield = false;
@@ -128,6 +130,9 @@ void Fighter::notify(State &st) {
   }
   else if (st.type == StateType::setaifalse && st.user == this->user) {
     IsComputer = false;
+  }
+  else if (st.type == StateType::keyup) {
+    Attacking = false;
   }
 }
 

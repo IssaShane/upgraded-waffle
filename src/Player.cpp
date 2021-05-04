@@ -25,7 +25,6 @@ void Player::notify(State &st) {
             const Uint8 *keys = SDL_GetKeyboardState(NULL);
             if (keys[SDL_SCANCODE_DOWN]) {
                 Power = 1;
-                Attacking = true;
                 Clip.x = 64;
                 frame = 2;
                 // alert the opponent of an attack
@@ -86,6 +85,9 @@ void Player::notify(State &st) {
             this->setState(newst);
             this->notifyObservers();
         }
+    }
+    else if (st.type == StateType::keyup) {
+        cout << "player keyup" << endl;
     }
 
     }

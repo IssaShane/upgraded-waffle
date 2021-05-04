@@ -22,9 +22,12 @@ void Controller::update(View view) {
     this->notifyObservers();
   }
   else if (e.type == SDL_KEYUP) {
-    cout << "keyup" << endl;
-    this->setState(State{StateType::keyup});
+    State newst;
+    newst.type = StateType::keyup;
+    newst.view = view;
+    this->setState(newst);
     this->notifyObservers();
+    //cout << "keyup notified" << endl;
   }
   else {
     State newst;
