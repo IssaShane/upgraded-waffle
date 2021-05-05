@@ -19,6 +19,8 @@ class ComputerPlayer : public Observer, public Subject {
   private:
     SDL_Rect pos;
     User user;
+    int delay; 
+    int delay_period; // number of frames delayed between attacks
 };
 
 #endif

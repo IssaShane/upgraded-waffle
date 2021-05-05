@@ -6,6 +6,8 @@ using namespace std;
 
 ComputerPlayer::ComputerPlayer() {
   user = User::p2;
+  delay_period = 15;
+  delay = delay_period;
 }
 
 void ComputerPlayer::notify(State &st) {
@@ -20,8 +22,12 @@ void ComputerPlayer::notify(State &st) {
     newst.pos = st.pos;
     newst.user = this->user;
     newst.view = View::Game;
-    if (IsCollision(st.pos,this->pos)) newst.command = AICommand::AI_attack;
+    if (IsCollision(st.pos,this->pos) && delay <= 0) {
+      newst.command = AICommand::AI_attack;
+      delay = 30;
+    }
     else newst.command = AICommand::move;
+    delay--;
     this->setState(newst);
     //cout << "sending AICommand" << endl;
     this->notifyObservers();

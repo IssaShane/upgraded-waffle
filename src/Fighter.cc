@@ -22,7 +22,7 @@ void Fighter::checkHealth( SDL_Rect POS, bool IsAttacking, int power ) {
 }
 
 void Fighter::attack() {
-  if (!Attacking) {
+  if (!Attacking || IsComputer) {
     Attacking = true;
     State st = this->getState();
     st.type = StateType::attack;
@@ -113,7 +113,6 @@ void Fighter::notify(State &st) {
       if (st.user == User::p1) cout << "p1" << endl;
       else if (st.user == User::p2) cout << "p2" << endl;
       Power = 5;
-      Attacking = true;
       Clip.x = 64;
       frame = 2;
       Special -= 1.5;
@@ -131,7 +130,7 @@ void Fighter::notify(State &st) {
   else if (st.type == StateType::setaifalse && st.user == this->user) {
     IsComputer = false;
   }
-  else if (st.type == StateType::keyup) {
+  else if (st.type == StateType::keyup && !IsComputer) {
     Attacking = false;
   }
 }

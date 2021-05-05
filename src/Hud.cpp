@@ -68,10 +68,10 @@ void Hud::draw( SDL_Surface *Screen ) {
     //cout << "Player bar pos.x :" << PlayerHealthBarPos.x << endl;
     SDL_BlitSurface( PlayerHealthBar, NULL, Screen, &PlayerHealthBarPos );
     SDL_BlitSurface( EnemyHealthBar, NULL, Screen, &EnemyHealthBarPos );
-    SDL_BlitSurface( PlayerBoostBar, NULL, Screen, &PlayerBoostBarPos );
+    /*SDL_BlitSurface( PlayerBoostBar, NULL, Screen, &PlayerBoostBarPos );
     SDL_BlitSurface( EnemyBoostBar, NULL, Screen, &EnemyBoostBarPos );
     SDL_BlitSurface( PlayerSpecialBar, NULL, Screen, &PlayerSpecialBarPos );
-    SDL_BlitSurface( EnemySpecialBar, NULL, Screen, &EnemySpecialBarPos );
+    SDL_BlitSurface( EnemySpecialBar, NULL, Screen, &EnemySpecialBarPos );*/
     
 }
 
