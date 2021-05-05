@@ -76,6 +76,11 @@ void Fighter::notify(State &st) {
     this->setState(newst);
     this->notifyObservers();
   }
+  // Knockback from Attack
+  else if (st.type == StateType::attack && IsCollision(st.pos, this->getPos())) {
+    if (Pos.x < st.pos.x) this->moveHorizontal(-15);
+    else this->moveHorizontal(15);
+  }
   // Collision with a wall
   else if (st.type == StateType::yescoll && st.user == this->user) {
     if (this->dir == 2) moveHorizontal(this->Speed);

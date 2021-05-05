@@ -66,6 +66,7 @@ void Player::notify(State &st) {
             }
         }
     else if (st.type == StateType::attack) {
+      
         this->checkHealth(st.pos,st.power,true);
         //cout << "health: " << this->getHealth() << endl;
         // alert HUD
